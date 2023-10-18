@@ -1,0 +1,146 @@
+table.dataTable thead {
+    background: #2A4C38;
+    color:white;
+}
+
+table.dataTable tfoot {
+    background: #2A4C38;
+    color:white;
+}
+
+div.dataTables_wrapper div.dataTables_length {
+    float: left !important;
+}
+
+div.dataTables_wrapper div.dataTables_filter {
+    float: right !important;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    float: left !important;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    float: right !important;
+}
+
+div.dt-buttons {
+    float: left !important;
+}
+
+/* tamaño de texto data tables*/
+#tabla_roles thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_tipo_cambio thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_modulo thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_permisos thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_objeto thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_control_acceso thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_tc_maestro thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_tc_usuario thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_roles{
+    font-size: 12px;
+}
+
+#tabla_tipo_cambio{
+    font-size: 12px;
+}
+
+#tabla_modulo{
+    font-size: 12px;
+}
+
+#tabla_permisos{
+    font-size: 12px;
+}
+
+#tabla_objeto{
+    font-size: 12px;
+}
+
+#tabla_control_acceso{
+    font-size: 12px;
+}
+
+#tabla_tc_maestro{
+    font-size: 12px;
+}
+
+#tabla_tc_usuario{
+    font-size: 12px;
+}
+
+.nav-tabs .nav-link.active {
+    background-color:#F2F3F5 !important;
+    border-color: #dee2e6 #dee2e6 #F2F3F5;
+}
+
+.nav-tabs .nav-link {
+    border-color: #dee2e6 #dee2e6 #dee2e6;
+    background: #f8f9fa;
+    color: #bec3bf;
+
+}
+
+/* stylos data tables*/
+
+.page-item.active .page-link {
+    background-color: #2A4C38;
+    border-color: #2A4C38;
+}
+
+.page-link {
+    color: #bec3bf;
+}
+
+table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
+    padding: 5px 5px 5px 5px !important;
+}
+
+.color-error {
+    background-color: #ffff006b !important;
+}
+
+/* PARA OCULTAR EL INCREMENTO DEL CAMPO NUMBER
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

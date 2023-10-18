@@ -1,0 +1,137 @@
+table.dataTable thead {
+    background: #2A4C38;
+    color:white;
+}
+
+table.dataTable tfoot {
+    background: #2A4C38;
+    color:white;
+}
+
+div.dataTables_wrapper div.dataTables_length {
+    float: left !important;
+}
+
+div.dataTables_wrapper div.dataTables_filter {
+    float: right !important;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    float: left !important;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    float: right !important;
+}
+
+div.dt-buttons {
+    float: left !important;
+}
+
+/* tamaño de texto data tables*/
+#tabla_condominio thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_puerta thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_edificio thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_departamento thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_residente thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_directiva thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_miembro thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_condominio{
+    font-size: 12px;
+}
+
+#tabla_puerta{
+    font-size: 10px;
+}
+
+#tabla_edificio{
+    font-size: 12px;
+}
+
+#tabla_departamento{
+    font-size: 12px;
+}
+
+#tabla_residente{
+    font-size: 12px;
+}
+
+#tabla_directiva{
+    font-size: 12px;
+}
+
+#tabla_miembro{
+    font-size: 12px;
+}
+
+.nav-tabs .nav-link.active {
+    background-color:#F2F3F5 !important;
+    border-color: #dee2e6 #dee2e6 #F2F3F5;
+}
+
+.nav-tabs .nav-link {
+    border-color: #dee2e6 #dee2e6 #dee2e6;
+    background: #f8f9fa;
+    color: #bec3bf;
+
+}
+
+/* stylos data tables*/
+
+.page-item.active .page-link {
+    background-color: #2A4C38;
+    border-color: #2A4C38;
+}
+
+.page-link {
+    color: #bec3bf;
+}
+
+table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
+    padding: 5px 5px 5px 5px !important;
+}
+
+.color-error {
+    background-color: #ffff006b !important;
+}
+
+/* PARA OCULTAR EL INCREMENTO DEL CAMPO NUMBER
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

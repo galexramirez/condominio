@@ -1,0 +1,234 @@
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  position: relative;
+  background: #f2f3f5;
+  font-family: 'Open Sans', sans-serif;
+  zoom: 100%;
+}
+
+
+/* :::::::::::: PRE LOADER :::::::::::::::::::::: */
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f5f5f5;
+  /* change if the mask should have another color then white */
+  z-index: 990;
+  /* makes sure it stays on top */
+}
+
+#status {
+  position: absolute;
+  left: 5%;
+  /* centers the loading animation horizontally one the screen */
+  top: 15%;
+  /* centers the loading animation vertically one the screen */
+  /* is width and height divided by two */
+}
+
+.spinner-sm {
+  width: 50px;
+  height: 50px;
+  background-image: url(http://www.lumavi.de/templates/automobile_darmas/images/icon_darmas_white.png);
+  background-size: 40%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #29b892;
+  border-radius: 50%;
+}
+.spinner-sm:after,
+.spinner-sm:before {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.spinner-sm-1:after {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  border: 4px solid transparent;
+  border-top-color: #29b892;
+  border-bottom-color: #29b892;
+  animation: spinny 0.8s linear infinite;
+}
+@keyframes spinny {
+0% {
+  transform: rotate(0deg) scale(1);
+}
+50% {
+  transform: rotate(90deg) scale(1.2);
+}
+100% {
+  transform: rotate(360deg) scale(1);
+}
+}
+@keyframes spinny {
+0% {
+  transform: rotate(0deg) scale(1);
+}
+50% {
+  transform: rotate(90deg) scale(1.2);
+}
+100% {
+  transform: rotate(360deg) scale(1);
+}
+}
+
+/* :::::::::::: ESTILOS PRIMER NIVEL :::::::::::::::::::::: */
+.my-primernivel {
+  height: 50px;
+  background: #fff;
+  box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
+  }
+
+.my-logo{
+  height: 35px; 
+  }
+
+.my-tarjetaNombre{
+  font-size: 10px;
+  }
+
+.my-hamburger{
+  width: 35px;
+  font-size: 20px;
+  padding: 0px;
+  border: none;
+  background-color: #F8F8F8;
+  color: #777777;
+  background-color: #f8f8f8;
+  outline: none;
+  -webkit-outline: none;
+  -moz-outline: none;
+  }
+  
+.my-hamburger:hover {
+  color: #333333;
+  outline: none;
+  }
+.my-hamburger:focus{border:0;outline:0 none;}
+.my-hamburger:active { outline: none; border: none; }
+
+
+/* ::::::::::: ESTILOS AGREGADOS PARA EL SIDEBAR :::::::::: */
+.my-segundonivel {
+  margin-top: 50px;
+  }
+
+#my-sideBar{
+  position: fixed;
+  z-index: 900;
+  width: 250px;
+  display: flex;
+  flex-wrap: nowrap;
+  /*max-height: 100vh;*/
+  overflow-x: auto;
+  flex-shrink: 0;
+  /*height: 100vh;*/
+  height: 100%;
+  border-width: 1px 0;
+}
+
+.my-menu{
+  width: 250px; 
+}
+
+#my-sideBar a{
+  color: #6c757d;
+}
+
+#my-sideBar a:hover{
+  color: #343a40;
+}
+
+#my-sideBar .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  background:#2A4C38 !important;
+}
+
+#my-sideBar .nav-pills .nav-link {
+  border-radius: 0px;
+}
+
+
+
+.my-sideBarClassMostrar{
+  visibility: visible;  
+  }
+
+.my-sideBarClassOcultar{
+  visibility: collapse;  
+  }
+
+
+.my-contenido-con-sidebar{
+  margin-left: 250px;
+  }
+.my-contenido-sin-sidebar{
+    margin-left:30px;
+    }
+
+
+
+/* ::::::::::: ESTILOS AGREGADOS SCROLLBAR:::::::::: */
+
+::-webkit-scrollbar {
+/*  width: 10px;
+  height: 7px;*/
+  width: 14px;
+  height: 10px;
+
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #7777;
+  border: 0px none #7777;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7777;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #7777;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  border: 0px none #7777;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: transparent;
+}
+::-webkit-scrollbar-track:active {
+  background: transparent;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+
+/*:::::: stylos para Opciones Sydebar*/
+
+#activo{
+  background: #38DA49;
+}
+
+#activo a{
+  background: #e6e7e9;
+  color: #2A4C38;
+  /*font-weight: bold; */
+}
