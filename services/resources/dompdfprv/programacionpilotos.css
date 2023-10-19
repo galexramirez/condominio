@@ -1,0 +1,54 @@
+@page {
+            margin-top: 7em;
+            
+        }
+
+
+
+body {
+
+font-family: sans-serif;
+color: #3B3838;
+
+}
+
+.logo {
+	width: 150px;
+	margin: -60px 0px 0px -40px;
+
+	    
+;
+}
+
+.programacion {
+	width: 100%;
+    border-collapse: collapse;
+  
+    font-size: 0.55em;
+}	
+
+.celdaTabla {
+	border: 1px solid black; 
+	text-align: center;
+}	
+
+.primeraFila{
+	background: #2AD194;
+}
+
+.titulos {
+
+font-size: 0.7em;
+text-align: center;	
+}
+
+.encabezadoTabla{
+	width: 100%;
+}
+
+.encabezado{
+	POSITION: fixed;
+	top:-70px;
+	    border-bottom: 1px solid #9E9E9E;
+
+}
