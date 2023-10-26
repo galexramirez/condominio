@@ -62,12 +62,24 @@ switch ($Accion)
 
    case 'select_categoria':
       $tabla         = $_POST['tabla'];
-      $tc_ficha      = $_POST['tc_ficha'];
       $tc_categoria1 = $_POST['tc_categoria1'];
+      $tc_categoria2 = $_POST['tc_categoria2'];
 
       MController($modulo,'logico');
       $instancia_ajax = new logico();
-      $respuesta = $instancia_ajax->select_categoria($tabla, $tc_ficha, $tc_categoria1);
+      $respuesta = $instancia_ajax->select_categoria($tabla, $tc_categoria1, $tc_categoria2);
+   break;
+
+   case 'existe_categoria':
+      $tabla         = $_POST['tabla'];
+      $tc_variable   = $_POST['tc_variable'];
+      $tc_categoria1 = strtoupper($_POST['tc_categoria1']);
+      $tc_categoria2 = strtoupper($_POST['tc_categoria2']);
+      $tc_categoria3 = strtoupper($_POST['tc_categoria3']);
+
+      MController($modulo,'logico');
+      $instancia_ajax = new logico();
+      $respuesta = $instancia_ajax->existe_categoria($tabla, $tc_variable, $tc_categoria1, $tc_categoria2, $tc_categoria3);
    break;
 
    case 'buscar_data_bd':
@@ -391,24 +403,24 @@ switch ($Accion)
 
    case 'crear_tc_maestro':
       $tc_maestro_id = $_POST['tc_maestro_id'];
-      $tc_ficha      = strtoupper($_POST['tc_ficha']);
       $tc_categoria1 = strtoupper($_POST['tc_categoria1']);
       $tc_categoria2 = strtoupper($_POST['tc_categoria2']);
+      $tc_categoria3 = strtoupper($_POST['tc_categoria3']);
 
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
-      $respuesta = $instancia_ajax->crear_tc_maestro($tc_maestro_id,$tc_ficha,$tc_categoria1,$tc_categoria2);
+      $respuesta = $instancia_ajax->crear_tc_maestro($tc_maestro_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
    break;
 
    case 'editar_tc_maestro':
       $tc_maestro_id = $_POST['tc_maestro_id'];
-      $tc_ficha      = strtoupper($_POST['tc_ficha']);
       $tc_categoria1 = strtoupper($_POST['tc_categoria1']);
       $tc_categoria2 = strtoupper($_POST['tc_categoria2']);
+      $tc_categoria3 = strtoupper($_POST['tc_categoria3']);
 
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
-      $respuesta = $instancia_ajax->editar_tc_maestro($tc_maestro_id,$tc_ficha,$tc_categoria1,$tc_categoria2);
+      $respuesta = $instancia_ajax->editar_tc_maestro($tc_maestro_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
    break;
 
    case 'borrar_tc_maestro':
@@ -427,24 +439,24 @@ switch ($Accion)
 
    case 'crear_tc_usuario':
       $tc_usuario_id = $_POST['tc_usuario_id'];
-      $tc_ficha      = strtoupper($_POST['tc_ficha']);
       $tc_categoria1 = strtoupper($_POST['tc_categoria1']);
       $tc_categoria2 = strtoupper($_POST['tc_categoria2']);
+      $tc_categoria3 = strtoupper($_POST['tc_categoria3']);
 
       MModel($modulo,'crud');
       $instancia_ajax= new crud();
-      $respuesta = $instancia_ajax->crear_tc_usuario($tc_usuario_id,$tc_ficha,$tc_categoria1,$tc_categoria2);
+      $respuesta = $instancia_ajax->crear_tc_usuario($tc_usuario_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
    break;
 
    case 'editar_tc_usuario':
       $tc_usuario_id = $_POST['tc_usuario_id'];
-      $tc_ficha      = strtoupper($_POST['tc_ficha']);
       $tc_categoria1 = strtoupper($_POST['tc_categoria1']);
       $tc_categoria2 = strtoupper($_POST['tc_categoria2']);
+      $tc_categoria3 = strtoupper($_POST['tc_categoria3']);
 
       MModel($modulo,'crud');
       $instancia_ajax= new crud();
-      $respuesta = $instancia_ajax->editar_tc_usuario($tc_usuario_id,$tc_ficha,$tc_categoria1,$tc_categoria2);
+      $respuesta = $instancia_ajax->editar_tc_usuario($tc_usuario_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
    break;
 
    case 'borrar_tc_usuario':

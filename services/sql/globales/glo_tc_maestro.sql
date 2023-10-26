@@ -4,9 +4,10 @@
 DROP TABLE IF EXISTS `bd_condominio`.`glo_tc_maestro`;
 CREATE TABLE `bd_condominio`.`glo_tc_maestro` (
   `tc_maestro_id` int NOT NULL AUTO_INCREMENT,
-  `tc_ficha` varchar(45) NOT NULL,
+  `tc_variable` varchar(45) NOT NULL,
   `tc_categoria1` varchar(45) NOT NULL,
-  `tc_categoria2` varchar(250) NOT NULL,
+  `tc_categoria2` varchar(45) NOT NULL,
+  `tc_categoria3` varchar(250) NOT NULL,
   PRIMARY KEY (`tc_maestro_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb3;
 --

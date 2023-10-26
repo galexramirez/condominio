@@ -45,7 +45,7 @@ $(document).ready(function() {
 ///::::::::::::::::::::::::::TERMINO JS DOM INICIO ::::::::::::::::::::::::::::::::::::::::///
 
 ///:::::::::::::::::::::::::::::: FUNCIONES DE INICIO :::::::::::::::::::::::::::::::::::::///
-function f_select_categoria(p_tabla,p_ficha,p_categoria1){
+function f_select_categoria(p_tabla,p_categoria1,p_categoria2){
   let rpta_select_categoria="";
   Accion='select_categoria';
   $.ajax({
@@ -53,12 +53,28 @@ function f_select_categoria(p_tabla,p_ficha,p_categoria1){
     type: "POST",
     datatype:"json",
     async: false,
-    data: {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, tabla:p_tabla, tc_ficha:p_ficha, tc_categoria1:p_categoria1},    
+    data: {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, tabla:p_tabla, tc_categoria1:p_categoria1, tc_categoria2:p_categoria2},    
     success: function(data){
       rpta_select_categoria = data;
     }
   });
   return rpta_select_categoria;
+}
+
+function f_existe_categoria(p_tabla, p_variable, p_categoria1, p_categoria2, p_categoria3){
+  let rpta_existe_categoria="";
+  Accion='existe_categoria';
+  $.ajax({
+    url     : "ajax.php",
+    type    : "POST",
+    datatype: "json",
+    async   : false,
+    data    : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, tabla:p_tabla, tc_variable:p_variable, tc_categoria1:p_categoria1, tc_categoria2:p_categoria2, tc_categoria3:p_categoria3},    
+    success : function(data){
+      rpta_existe_categoria = data;
+    }
+  });
+  return rpta_existe_categoria;
 }
 
 ///:: BUSCAR DATA EN BD :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::///

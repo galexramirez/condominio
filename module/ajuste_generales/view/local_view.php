@@ -63,7 +63,7 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="roles_dni" class="col-form-label form-control-sm">Nro. DNI</label>
-												<input type="text" class="form-control form-control-sm" id="roles_dni" disabled>
+												<input type="text" class="form-control form-control-sm" id="roles_dni" maxlength="8">
 											</div> 
 									  	</div>    
 					  				</div>
@@ -71,8 +71,7 @@
 										<div class="col-lg-12">
 							  				<div class="form-group">
 												<label for="roles_apellidos_nombres" class="col-form-label form-control-sm">APELLIDOS Y NOMBRES</label>
-												<select class="form-control form-control-sm" id="roles_apellidos_nombres">
-												</select>
+												<input type="text" readonly class="form-control form-control-sm" id="roles_apellidos_nombres">
 											</div>
 						  				</div>
 									</div>
@@ -80,7 +79,7 @@
 						  				<div class="col-lg-6">
 							  				<div class="form-group">
 												<label for="roles_nombre_corto" class="col-form-label form-control-sm">NOMBRE CORTO</label>
-												<input type="text" class="form-control form-control-sm" id="roles_nombre_corto">
+												<input type="text" readonly class="form-control form-control-sm" id="roles_nombre_corto">
 											</div>               
 						   				</div>
 										<div class="col-lg-6">
@@ -590,24 +589,24 @@
 									 	</div>
 									 	<div class="col-lg-6">
 									  		<div class="form-group">
-												<label for="tc_maestro_ficha" class="col-form-label form-control-sm">FICHA</label>
-										   		<input type="text" class="form-control text-uppercase form-control-sm" id="tc_maestro_ficha" maxlength="45">
+												<label for="tc_maestro_categoria1" class="col-form-label form-control-sm">CATEGORIA 1</label>
+										   		<input type="text" class="form-control text-uppercase form-control-sm" id="tc_maestro_categoria1" maxlength="45">
 											</div> 
 									 	</div>    
 									</div>
 					  				<div class="row"> 
 										<div class="col-lg-6">
 									  		<div class="form-group">
-												<label for="tc_maestro_categoria1" class="col-form-label form-control-sm">CATEGORIA 1</label>
-												<input type="text" class="form-control text-uppercase form-control-sm" id="tc_maestro_categoria1" maxlength="45">
+												<label for="tc_maestro_categoria2" class="col-form-label form-control-sm">CATEGORIA 2</label>
+												<input type="text" class="form-control text-uppercase form-control-sm" id="tc_maestro_categoria2" maxlength="45">
 											</div> 
 						  				</div>
 									</div>
 									<div class="row"> 
 						  				<div class="col-lg-12">
 									  		<div class="form-group">
-												<label for="tc_maetsro_categoria2" class="col-form-label form-control-sm">CATEGORIA 2</label>
-										  		<textarea class="form-control z-depth-1 text-uppercase" id="tc_maestro_categoria2" rows="7" placeholder="escribe algo aqui..." maxlength="250"></textarea>
+												<label for="tc_maestro_categoria3" class="col-form-label form-control-sm">CATEGORIA 3</label>
+										  		<textarea class="form-control z-depth-1 text-uppercase" id="tc_maestro_categoria3" rows="7" placeholder="escribe algo aqui..." maxlength="250"></textarea>
 											</div>               
 						   				</div>
 					  				</div>
@@ -659,24 +658,24 @@
 									 	</div>
 									 	<div class="col-lg-6">
 									  		<div class="form-group">
-												<label for="tc_usuario_ficha" class="col-form-label form-control-sm">FICHA</label>
-										   		<input type="text" class="form-control text-uppercase form-control-sm" id="tc_usuario_ficha" maxlength="45">
+												<label for="tc_usuario_categoria1" class="col-form-label form-control-sm">CATEGORIA 1</label>
+										   		<input type="text" class="form-control text-uppercase form-control-sm" id="tc_usuario_categoria1" maxlength="45">
 											</div> 
 									 	</div>    
 									</div>
 					  				<div class="row"> 
 										<div class="col-lg-6">
 									  		<div class="form-group">
-												<label for="tc_usuario_categoria1" class="col-form-label form-control-sm">CATEGORIA 1</label>
-												<input type="text" class="form-control text-uppercase form-control-sm" id="tc_usuario_categoria1" maxlength="45">
+												<label for="tc_usuario_categoria2" class="col-form-label form-control-sm">CATEGORIA 2</label>
+												<input type="text" class="form-control text-uppercase form-control-sm" id="tc_usuario_categoria2" maxlength="45">
 											</div> 
 						  				</div>
 									</div>
 									<div class="row"> 
 						  				<div class="col-lg-12">
 									  		<div class="form-group">
-												<label for="tc_usuario_categoria2" class="col-form-label form-control-sm">CATEGORIA 2</label>
-										  		<textarea class="form-control z-depth-1 text-uppercase form-control-sm" id="tc_usuario_categoria2" rows="7" placeholder="escribe algo aqui..." maxlength="250"></textarea>
+												<label for="tc_usuario_categoria3" class="col-form-label form-control-sm">CATEGORIA 3</label>
+										  		<textarea class="form-control z-depth-1 text-uppercase form-control-sm" id="tc_usuario_categoria3" rows="7" placeholder="escribe algo aqui..." maxlength="250"></textarea>
 											</div>               
 						   				</div>
 					  				</div>

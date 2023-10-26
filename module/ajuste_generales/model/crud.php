@@ -370,9 +370,10 @@ class crud
         $this->conexion=null;
    	}   
 		 
-	function crear_tc_maestro($tc_maestro_id,$tc_ficha,$tc_categoria1,$tc_categoria2)
+	function crear_tc_maestro($tc_maestro_id, $tc_categoria1, $tc_categoria2, $tc_categoria3)
 	{
-		$consulta = "INSERT INTO `glo_tc_maestro`(`tc_ficha`, `tc_categoria1`, `tc_categoria2`) VALUES ('$tc_ficha','$tc_categoria1','$tc_categoria2')";
+		$tc_variable = 'SISTEMA';
+		$consulta = "INSERT INTO `glo_tc_maestro`(`tc_variable`, `tc_categoria1`, `tc_categoria2`, `tc_categoria3`) VALUES ('$tc_variable', '$tc_categoria1','$tc_categoria2','$tc_categoria3')";
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();   
 
@@ -384,9 +385,9 @@ class crud
         $this->conexion=null;	
 	}  	
 	
-	function editar_tc_maestro($tc_maestro_id,$tc_ficha,$tc_categoria1,$tc_categoria2)
+	function editar_tc_maestro($tc_maestro_id, $tc_categoria1, $tc_categoria2, $tc_categoria3)
 	{
-		$consulta = "UPDATE `glo_tc_maestro` SET `tc_ficha`='$tc_ficha',`tc_categoria1`='$tc_categoria1',`tc_categoria2`='$tc_categoria2' WHERE `tc_maestro_id`='$tc_maestro_id'";		
+		$consulta = "UPDATE `glo_tc_maestro` SET `tc_categoria1`='$tc_categoria1',`tc_categoria2`='$tc_categoria2',`tc_categoria3`='$tc_categoria3' WHERE `tc_maestro_id`='$tc_maestro_id'";		
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();   
 
@@ -419,9 +420,10 @@ class crud
         $this->conexion=null;
    	}   
 		 
-	function crear_tc_usuario($tc_usuario_id,$tc_ficha,$tc_categoria1,$tc_categoria2)
+	function crear_tc_usuario($tc_usuario_id, $tc_categoria1, $tc_categoria2, $tc_categoria3)
 	{
-		$consulta = "INSERT INTO `glo_tc_usuario`(`tc_ficha`, `tc_categoria1`, `tc_categoria2`) VALUES ('$tc_ficha','$tc_categoria1','$tc_categoria2')";
+		$tc_variable = 'SISTEMA';
+		$consulta = "INSERT INTO `glo_tc_usuario`(`tc_variable`, `tc_categoria1`, `tc_categoria2`, `tc_categoria3`) VALUES ('$tc_variable', '$tc_categoria1', '$tc_categoria2','$tc_categoria3')";
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();   
 
@@ -434,9 +436,9 @@ class crud
         $this->conexion=null;	
 	}  	
 	
-	function editar_tc_usuario($tc_usuario_id,$tc_ficha,$tc_categoria1,$tc_categoria2)
+	function editar_tc_usuario($tc_usuario_id, $tc_categoria1, $tc_categoria2, $tc_categoria3)
 	{
-		$consulta = "UPDATE `glo_tc_usuario` SET `tc_ficha`='$tc_ficha',`tc_categoria1`='$tc_categoria1',`tc_categoria2`='$tc_categoria2' WHERE `tc_usuario_id`='$tc_usuario_id'";		
+		$consulta = "UPDATE `glo_tc_usuario` SET `tc_categoria1`='$tc_categoria1', `tc_categoria2`='$tc_categoria2', `tc_categoria3`='$tc_categoria3' WHERE `tc_usuario_id`='$tc_usuario_id'";		
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();   
 
@@ -498,9 +500,21 @@ class crud
   		$this->conexion=null;	
 	}  		
 
-	function select_categoria($tabla,$tc_ficha,$tc_categoria1)
+	function select_categoria($tabla,$tc_categoria1,$tc_categoria2)
 	{
-		$consulta="SELECT `$tabla`.`tc_categoria2` AS `Detalle` FROM `$tabla` WHERE `$tabla`.`tc_ficha` = '$tc_ficha' AND `$tabla`.`tc_categoria1`= '$tc_categoria1' ORDER BY`Detalle` ASC";
+		$consulta = " SELECT `$tabla`.`tc_categoria3` AS `Detalle` FROM `$tabla` WHERE `$tabla`.`tc_categoria1` = '$tc_categoria1' AND `$tabla`.`tc_categoria2`= '$tc_categoria2' ORDER BY `Detalle` ASC ";
+
+		$resultado = $this->conexion->prepare($consulta);
+		$resultado->execute();        
+		$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+		return $data;
+
+		$this->conexion=null;
+	}
+
+	function existe_categoria($tabla, $tc_variable, $tc_categoria1, $tc_categoria2, $tc_categoria3)
+	{
+		$consulta = " SELECT * FROM `$tabla` WHERE `$tabla`.`tc_variable` = '$tc_variable' AND `$tabla`.`tc_categoria1` = '$tc_categoria1' AND `$tabla`.`tc_categoria2`= '$tc_categoria2' AND `$tabla`.`tc_categoria3`= '$tc_categoria3' ";
 
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();        

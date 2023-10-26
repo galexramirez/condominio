@@ -41,16 +41,30 @@ class logico
 		echo $html;
 	}
 
-	public function select_categoria($tabla, $tc_ficha, $tc_categoria1)
+	public function select_categoria($tabla, $tc_categoria1, $tc_categoria2)
 	{
 		MModel($this->modulo, 'crud');
 		$instancia_ajax = new crud();
-		$respuesta = $instancia_ajax->select_categoria($tabla, $tc_ficha, $tc_categoria1);
+		$respuesta = $instancia_ajax->select_categoria($tabla, $tc_categoria1, $tc_categoria2);
 
 		$html = '<option value="">Seleccione una opcion</option>';
 
 		foreach ($respuesta as $row) {
 			$html .= '<option value="'.$row['Detalle'].'">'.$row['Detalle'].'</option>';
+		}
+		echo $html;
+	}
+
+	public function existe_categoria($tabla, $tc_variable, $tc_categoria1, $tc_categoria2, $tc_categoria3)
+	{
+		MModel($this->modulo, 'crud');
+		$instancia_ajax = new crud();
+		$respuesta = $instancia_ajax->existe_categoria($tabla, $tc_variable, $tc_categoria1, $tc_categoria2, $tc_categoria3);
+
+		$html = 'NO';
+
+		foreach ($respuesta as $row) {
+			$html = 'SI';
 		}
 		echo $html;
 	}

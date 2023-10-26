@@ -9,32 +9,17 @@ var tabla_roles, opcion_roles, fila_roles, validar_roles;
 ///::::::::::::::::::::::::::::::::::::: JS DON ROLES DE USUARIO ::::::::::::::::::::::::::///
 $(document).ready(function(){
     ///:::::: SI SE ACTUALIZA roles_apellidos_nombres entonces se busca el nombre corto ::::///
-    $("#roles_apellidos_nombres").on('change', function () {
-        roles_apellidos_nombres = $("#roles_apellidos_nombres").val(); 
-        Accion='buscar_DNI';
-        $.ajax({
-            url: "ajax.php",
-            type: "POST",
-            datatype:"json",
-            async: false,
-            data:  { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, roles_apellidos_nombres:roles_apellidos_nombres},    
-            success: function(data) {
-                roles_dni = data;
-                $("#roles_dni").val(roles_dni);
-            }
+    $("#roles_dni").on('change', function () {
+        roles_dni               = $("#roles_dni").val();
+        roles_apellidos_nombres  = "";
+        roles_nombre_corto       = ""; 
+        a_data = f_buscar_data_bd('glo_maestro','maestro_id', roles_dni);
+        $.each(a_data, function(idx, obj){
+            roles_apellidos_nombres  = obj.maes_apellidos_nombres;
+            roles_nombre_corto       = obj.maes_nombre_corto;
         });
-
-        Accion='buscar_nombre_corto';
-        $.ajax({
-            url: "ajax.php",
-            type: "POST",
-            datatype:"json",
-            async: false,
-            data:  { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, roles_dni:roles_dni},    
-            success: function(data) {
-                $("#roles_nombre_corto").val(data);
-            }
-        });
+        $("#roles_apellidos_nombres").val(roles_apellidos_nombres);
+        $("#roles_nombre_corto").val(roles_nombre_corto);
     });
 
     ///:::::::::::::::::::: SE CREA LOS BOTONES DE ROLES DE USUARIO :::::::::::::::::::::::///
@@ -73,11 +58,10 @@ $(document).ready(function(){
 
     ///:::::::::::::::::::::::::: EVENTO DEL BOTON NUEVO ::::::::::::::::::::::::::::::::::///
     $(document).on("click", ".btn_nuevo_roles", function(){
-        opcion_roles = 1; // CREAR 
+        opcion_roles = 'CREAR'; 
         f_limpia_roles();
-        f_combos_roles();
         $("#form_roles").trigger("reset");
-        $("#roles_apellidos_nombres").prop('disabled', false);
+        $("#roles_dni").prop('disabled', false);
 
         $(".modal-header").css( "background-color", "#17a2b8");
         $(".modal-header").css( "color", "white" );
@@ -88,11 +72,10 @@ $(document).ready(function(){
 
     ///::::::::::::::::::::::::::::::::: BOTON EDITAR :::::::::::::::::::::::::::::::::::::///       
     $(document).on("click", ".btn_editar_roles", function(){
-        opcion_roles = 2;// EDITAR
+        opcion_roles = 'EDITAR';
         f_limpia_roles();
-        f_combos_roles();
         $("#form_roles").trigger("reset");
-        $("#roles_apellidos_nombres").prop('disabled', true);
+        $("#roles_dni").prop('disabled', true);
 
         fila_roles              = $(this).closest("tr");	        
         roles_id                = fila_roles.find('td:eq(0)').text();
@@ -123,42 +106,33 @@ $(document).ready(function(){
         roles_apellidos_nombres = $.trim($('#roles_apellidos_nombres').val());    
         roles_nombre_corto      = $.trim($('#roles_nombre_corto').val());
         roles_perfil            = $.trim($('#roles_perfil').val());
-        roles_codigoatu         = $.trim($("#roles_codigoatu").val());
     
         validar_roles = f_validar_roles(roles_dni,roles_apellidos_nombres,roles_nombre_corto,roles_perfil);
         
-        $("#btn_guardar_roles").prop("disabled",true);
-        if(opcion_roles == 1) {
-            if(validar_roles!="invalido") {   
-                Accion = 'crear_roles';  /// CREAR
-                $.ajax({
-                    url: "ajax.php",
-                    type: "POST",
-                    datatype:"json",    
-                    data:  { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, roles_dni:roles_dni, roles_apellidos_nombres:roles_apellidos_nombres, roles_nombre_corto:roles_nombre_corto, roles_perfil:roles_perfil},
-                    success: function(data) {
-                        tabla_roles.ajax.reload(null, false);
-                    }
-                });
-                $('#modal_crud_roles').modal('hide');
-            } 
-        }
-        if(opcion_roles == 2) {
-            if(validar_roles!="invalido") {   
-                Accion = 'editar_roles'; /// EDITAR
-                $.ajax({
-                    url: "ajax.php",
-                    type: "POST",
-                    datatype:"json",    
-                    data:  { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, roles_id:roles_id, roles_dni:roles_dni, roles_apellidos_nombres:roles_apellidos_nombres, roles_nombre_corto:roles_nombre_corto, roles_perfil:roles_perfil},    
-                    success: function(data) {
-                        tabla_roles.ajax.reload(null, false);
-                    }
-                });
-                $('#modal_crud_roles').modal('hide');
-            } 
-        }
-        $("#btn_guardar_roles").prop("disabled",false);
+        if(validar_roles=="invalido") {
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: '*Falta Completar Información!!!',
+                showConfirmButton: false,
+                timer: 1500
+              })  
+        }else{
+            $("#btn_guardar_roles").prop("disabled",true);
+            if(opcion_roles == 'CREAR') { Accion = 'crear_roles'; }
+            if(opcion_roles == 'EDITAR') { Accion = 'editar_roles'; }   
+            $.ajax({
+                url     : "ajax.php",
+                type    : "POST",
+                datatype: "json",    
+                data    : { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, roles_id:roles_id, roles_dni:roles_dni, roles_apellidos_nombres:roles_apellidos_nombres, roles_nombre_corto:roles_nombre_corto, roles_perfil:roles_perfil},
+                success: function(data) {
+                    tabla_roles.ajax.reload(null, false);
+                }
+            });
+            $('#modal_crud_roles').modal('hide');
+            $("#btn_guardar_roles").prop("disabled",false);
+        } 
     });
     ///:::::::::::::::::::::::::::: FIN CREA Y EDITA ROLES ::::::::::::::::::::::::::::::::///
         
@@ -241,18 +215,3 @@ function f_limpia_roles(){
 }
 ///:::::::::::: FIN INVISIBILIZA LOS MENSAJE DE ALERTA DEL FORMULARIO ::::::::::::::::::::/// 
 
-///::::::::::::::::::::::: ACTUALIZA COMBOS PARA ROLES DE USUARIO ::::::::::::::::::::::::///
-function f_combos_roles(){
-    Accion='select_maestro';
-    $.ajax({
-        url: "ajax.php",
-        type: "POST",
-        datatype:"json",
-        async: false,
-        data:  { MoS:MoS,NombreMoS:NombreMoS,Accion:Accion},    
-        success: function(data) {
-            $("#roles_apellidos_nombres").html(data);
-        }
-    });
-}
-///:::::::::::::::::::: FIN ACTUALIZA COMBOS PARA ROLES DE USUARIO ::::::::::::::::::::::::///

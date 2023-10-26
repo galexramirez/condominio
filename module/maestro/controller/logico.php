@@ -8,11 +8,11 @@ class logico
 		MView($this->modulo,'local_view',compact('NombreDeModuloVista') );
 	}
 
-	public function select_categoria($tabla, $tc_ficha, $tc_categoria1)
+	public function select_categoria($tabla, $tc_categoria1, $tc_categoria2)
 	{
 		MModel($this->modulo, 'crud');
 		$instancia_ajax = new crud();
-		$respuesta = $instancia_ajax->select_categoria($tabla, $tc_ficha, $tc_categoria1);
+		$respuesta = $instancia_ajax->select_categoria($tabla, $tc_categoria1, $tc_categoria2);
 
 		$html = '<option value="">Seleccione una opcion</option>';
 
