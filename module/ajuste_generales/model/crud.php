@@ -460,6 +460,7 @@ class crud
 	function buscar_data_bd($tabla_bd, $campo_bd, $data_buscar)
 	{
 		$consulta = "SELECT * FROM `$tabla_bd` WHERE `$campo_bd` = '$data_buscar'";
+		echo $consulta;
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();
 		$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
