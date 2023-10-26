@@ -2,7 +2,7 @@
 class logico
 {
 	var $modulo = "maestro";
-	// 1.0 CARGA DATOS DE BUSQUEDA DE PILOTO
+
 	function Contenido($NombreDeModuloVista)    
 	{		
 		MView($this->modulo,'local_view',compact('NombreDeModuloVista') );

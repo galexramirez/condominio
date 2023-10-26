@@ -45,26 +45,26 @@
 	      		            </div>
 	      		            <div class="col-lg-6">
 		  		                <div class="form-group">
+				                   	<label for="usua_nombre_corto" class="col-form-label form-control-sm">1er.NOMBRE Y 1er.APELLIDO</label>
+				                   	<input type="text" readonly class="form-control text-uppercase form-control-sm" id="usua_nombre_corto" maxlength="45">
+				               	</div>               
+				           	</div>	      		        
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+		  		                <div class="form-group">
 				                   <label for="usua_nombres" class="col-form-label form-control-sm">APELLIDOS Y NOMBRES</label>
-				                   <input type="text" class="form-control text-uppercase form-control-sm" id="usua_nombres" maxlength="60">
+				                   <input type="text" readonly class="form-control text-uppercase form-control-sm" id="usua_nombres" maxlength="60">
 		  		                </div> 
 	      		            </div>    
-	      		        </div>
-	      		        <div class="row"> 
-	      		            <div class="col-lg-6">
-		  		                <div class="form-group">
-				                   	<label for="usua_nombre_corto" class="col-form-label form-control-sm">1er.NOMBRE Y 1er.APELLIDO</label>
-				                   	<input type="text" class="form-control text-uppercase form-control-sm" id="usua_nombre_corto" maxlength="45">
-				               	</div>               
-				           	</div>
+						</div>
+						<div class="row"> 
 				            <div class="col-lg-6">
 				              	<div class="form-group">
 				               		<label for="usua_usuario_web" class="col-form-label form-control-sm">USUARIO WEB</label>
-				               		<input type="text" class="form-control form-control-sm" id="usua_usuario_web" maxlength="20">
+				               		<input type="text" class="form-control form-control-sm" id="usua_usuario_web" maxlength="80">
 								</div>
 		  		            </div>
-	      		        </div>
-	      		        <div class="row">
 	      		            <div class="col-lg-6">
 	      		               	<div class="form-group">
 	      		                	<label for="input-group" class="col-form-label form-control-sm">PASSWORD</label>
@@ -76,6 +76,8 @@
 									</div>
 	      		                </div>
 	      		            </div>    
+						</div>
+	      		        <div class="row">
 	      		            <div class="col-lg-6">    
 	      		                <div class="form-group">
 								  	<label for="usua_perfil" class="col-form-label form-control-sm">PERFIL</label>
@@ -83,8 +85,6 @@
 									</select>										 
 								</div>            
 	      		            </div>    
-	      		        </div>   
-	      		        <div class="row">
 	      		            <div class="col-lg-6">
 	      		                <div class="form-group">
 									<label for="usua_estado" class="col-form-label form-control-sm">ESTADO</label>
@@ -92,7 +92,7 @@
 									</select>										 
 	      		                </div>
 	      		            </div>    
-		      		    </div>
+						</div>   
 	      		    </div>
 	      		    <div class="modal-footer">
 	      		        <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>

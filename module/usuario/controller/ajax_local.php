@@ -62,12 +62,22 @@ switch ($Accion)
 
    case 'select_categoria':
       $tabla         = $_POST['tabla'];
-      $tc_ficha      = $_POST['tc_ficha'];
+      $tc_categoria2 = $_POST['tc_categoria2'];
       $tc_categoria1 = $_POST['tc_categoria1'];
 
       MController($modulo,'logico');
       $instancia_ajax = new logico();
-      $respuesta = $instancia_ajax->select_categoria($tabla, $tc_ficha, $tc_categoria1);
+      $respuesta = $instancia_ajax->select_categoria($tabla, $tc_categoria1, $tc_categoria2);
+   break;
+
+   case 'buscar_data_bd':
+      $tabla_bd      = $_POST['tabla_bd'];
+      $campo_bd      = $_POST['campo_bd'];
+      $data_buscar   = $_POST['data_buscar'];
+
+      MController($modulo,'logico');
+      $instancia_ajax = new logico();
+      $respuesta     = $instancia_ajax->buscar_data_bd($tabla_bd, $campo_bd, $data_buscar);
    break;
 
    case 'leer_usuario':

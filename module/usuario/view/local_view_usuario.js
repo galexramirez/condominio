@@ -11,6 +11,29 @@ $(document).ready(function(){
     div_boton = f_botones_formulario("form_seleccion_usuario","btn_seleccion_usuario");
     $("#div_btn_seleccion_usuario").html(div_boton);
 
+    ///::SI SE ACTUALIZA usuario_id entonces se busca el nombre corto apellidos y nombre ::///
+    $("#usuario_id").on('change', function () {
+        usuario_id        = $("#usuario_id").val();
+        usua_nombres      = "";
+        usua_nombre_corto = ""; 
+        usua_usuario_web  = "";
+        usua_password     = "";
+        usua_perfil       = "";
+        usua_estado       = "";
+
+        a_data = f_buscar_data_bd('glo_maestro','maestro_id', usuario_id);
+        $.each(a_data, function(idx, obj){
+            usua_nombres      = obj.maes_apellidos_nombres;
+            usua_nombre_corto = obj.maes_nombre_corto;
+        });
+        $("#usua_nombres").val(usua_nombres);
+        $("#usua_nombre_corto").val(usua_nombre_corto);
+        $("#usua_usuario_web").val(usua_usuario_web);
+        $("#usua_password").val(usua_password);
+        $("#usua_perfil").val(usua_perfil);
+        $("#usua_estado").val(usua_estado);
+    });
+
     ///::::::::::::::::::: DataTable Usuario ::::::::::::::::::::::::::::::::::::::::::::::///
     div_tabla = f_creacion_tabla("tabla_usuario","");
     $("#div_tabla_usuario").html(div_tabla);
@@ -46,7 +69,8 @@ $(document).ready(function(){
     
     ///::::::::::::::::::::::::::: CREA Y EDITA USUARIO :::::::::::::::::::::::::::::::::::///
     $('#form_usuario').submit(function(e){                         
-        let t_validacion="";
+        let t_validacion = '';
+        let t_msg        = '';
         e.preventDefault();
         
         usuario_id          = $.trim($('#usuario_id').val());    
@@ -59,43 +83,54 @@ $(document).ready(function(){
         
         t_validacion = f_validar_usuario(usuario_id, usua_nombres,usua_nombre_corto,usua_usuario_web,usua_password,usua_perfil,usua_estado);
 
+        if(usuario_id!=''){
+            a_data = f_buscar_data_bd('glo_usuario', 'usuario_id', usuario_id)
+            if(a_data.length>0 && opcion_usuario=='CREAR'){
+                t_msg        = '<br>Usuario Existe!!!';
+                t_validacion = 'invalido';
+                $("#usuario_id").addClass("color-error");
+            }
+        }
+        if(usua_usuario_web!=''){
+            a_data = f_buscar_data_bd('glo_usuario', 'usua_usuario_web', usua_usuario_web)
+            if(a_data.length>0 && opcion_usuario=='CREAR'){
+                t_msg       += '<br>UsuarioWeb Existe!!!';
+                t_validacion = 'invalido';
+                $("#usua_usuario_web").addClass("color-error");
+            }
+            if(a_data.length>0 && opcion_usuario=='EDITAR'){
+                $.each(a_data, function(idx, obj){
+                    if(usuario_id != obj.usuario_id){
+                        t_msg       += "<br>UsuarioWeb Existe!!!";
+                        t_validacion = "invalido";
+                        $("#usua_usuario_web").addClass("color-error");        
+                    } 
+                });
+            }
+        }
+
         if(t_validacion=="invalido"){
             Swal.fire({
                 position: 'center',
                 icon: 'error',
-                title: '*Falta Completar Información!!!',
+                title: '*Falta Completar Información!!!'+t_msg,
                 showConfirmButton: false,
                 timer: 1500
               })
         }else{
-            if(opcion_usuario = 1) { /// CREAR
-                $("#btn_guardar_usuario").prop("disabled",true);
-                Accion='crear_usuario';
-                $.ajax({
-                    url: "ajax.php",
-                    type: "POST",
-                    datatype:"json",    
-                    data:  { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, usuario_id:usuario_id, usua_nombres:usua_nombres, usua_nombre_corto:usua_nombre_corto,  usua_usuario_web:usua_usuario_web, usua_password:usua_password, usua_perfil:usua_perfil, usua_estado:usua_estado },    
-                    success: function(data) {
-                        tabla_usuario.ajax.reload(null, false);
-                    }
-                });
-                $('#modal_crud').modal('hide');
-            }
-            if(opcion_usuario = 2) { /// EDITAR
-                $("#btn_guardar_usuario").prop("disabled",true);
-                Accion='editar_usuario';
-                $.ajax({
-                    url: "ajax.php",
-                    type: "POST",
-                    datatype:"json",    
-                    data:  { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, usuario_id:usuario_id, usua_nombres:usua_nombres, usua_nombre_corto:usua_nombre_corto,  usua_usuario_web:usua_usuario_web, usua_password:usua_password, usua_perfil:usua_perfil, usua_estado:usua_estado },    
-                    success: function(data) {
-                        tabla_usuario.ajax.reload(null, false);
-                    }
-                });
-                $('#modal_crud').modal('hide');
-            }
+            if(opcion_usuario == 'CREAR') { Accion='crear_usuario'; }
+            if(opcion_usuario == 'EDITAR') { Accion='editar_usuario'; }
+            $("#btn_guardar_usuario").prop("disabled",true);
+            $.ajax({
+                url     : "ajax.php",
+                type    : "POST",
+                datatype: "json",    
+                data    : { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, usuario_id:usuario_id, usua_nombres:usua_nombres, usua_nombre_corto:usua_nombre_corto, usua_usuario_web:usua_usuario_web, usua_password:usua_password, usua_perfil:usua_perfil, usua_estado:usua_estado },    
+                success : function(data) {
+                    tabla_usuario.ajax.reload(null, false);
+                }
+            });
+            $('#modal_crud').modal('hide');
             $("#btn_guardar_usuario").prop("disabled",false);
         }
     });
@@ -103,7 +138,7 @@ $(document).ready(function(){
 
     ///:::::::::::::::::::::::::: EVENTO DEL BOTON NUEVO ::::::::::::::::::::::::::::::::::///
     $(document).on("click", ".btn_nuevo", function(){
-        opcion_usuario = 1; // CREAR USUARIO 
+        opcion_usuario = 'CREAR';
         f_limpia_usuario();          
         $("#usuario_id").prop('disabled', false);
         $("#form_usuario").trigger("reset");
@@ -134,7 +169,7 @@ $(document).ready(function(){
     
     ///::::::::::::::::::::::::::::: EVENTO DEL BOTON EDITAR ::::::::::::::::::::::::::::::///       
     $(document).on("click", ".btn_editar", function(){
-        opcion_usuario = 2;// EDITAR USUARIO
+        opcion_usuario = 'EDITAR';
         f_limpia_usuario();
         $("#usuario_id").prop('disabled', true);
         $("#form_usuario").trigger("reset");

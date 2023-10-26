@@ -32,10 +32,10 @@ $(document).ready(function(){
             },
         ],
         "ajax":{            
-                "url": "Ajax.php", 
-                "method": 'POST', //usamos el metodo POST
-                "data":{MoS:MoS, NombreMoS:NombreMoS, Accion:Accion}, //enviamos opcion 4 para que haga un SELECT
-                "dataSrc":""
+                "url"       : "ajax.php", 
+                "method"    : 'POST', //usamos el metodo POST
+                "data"      : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion}, //enviamos opcion 4 para que haga un SELECT
+                "dataSrc"   :""
                 },
         "columns": columnas_tabla
     });     
@@ -110,7 +110,7 @@ $(document).ready(function(){
             if(opcion_tc_usuario == 'EDITAR') { Accion='editar_tc_usuario'; }
             $("#btn_guardar_tc_usuario").prop("disabled",true);
             $.ajax({
-                url     : "Ajax.php",
+                url     : "ajax.php",
                 type    : "POST",
                 datatype: "json",    
                 data    : { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, tc_usuario_id:tc_usuario_id, tc_categoria1:tc_usuario_categoria1, tc_categoria2:tc_usuario_categoria2, tc_categoria3:tc_usuario_categoria3},    
@@ -149,7 +149,7 @@ $(document).ready(function(){
                 Accion='borrar_tc_usuario';
                 if (rpta_borrar_tc_usuario == 1) {            
                     $.ajax({
-                    url: "Ajax.php",
+                    url: "ajax.php",
                     type: "POST",
                     datatype:"json",
                     async: false,    

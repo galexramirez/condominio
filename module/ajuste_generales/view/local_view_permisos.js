@@ -121,7 +121,7 @@ $(document).ready(function(){
         if(per_usuario_id!="" && per_modulo_nombre!="" && opcion_permisos=="CREAR"){
             Accion = 'validar_permisos';
             $.ajax({
-                url         : "Ajax.php",
+                url         : "ajax.php",
                 type        : "POST",
                 datatype    : "json",
                 async       : false,

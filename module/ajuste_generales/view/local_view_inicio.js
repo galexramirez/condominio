@@ -82,7 +82,7 @@ function f_buscar_data_bd(p_tabla_bd, p_campo_bd, p_data_buscar){
   let rpta_data;
   Accion = 'buscar_data_bd';
   $.ajax({
-    url       : "Ajax.php",
+    url       : "ajax.php",
     type      : "POST",
     datatype  : "json",
     async     : false,

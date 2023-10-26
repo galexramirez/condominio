@@ -32,21 +32,39 @@ $(document).ready(function(){
 
 
 ///::::::::::::::::::::::::::::::::: FUNCIONES DE USUARIO :::;:::::::::::::::::::::::::::::///
-function f_select_categoria(p_tabla,p_ficha,p_categoria1){
+function f_select_categoria(p_tabla,p_categoria1,p_categoria2){
   let rpta_select_categoria="";
   Accion='select_categoria';
   $.ajax({
-    url: "ajax.php",
-    type: "POST",
-    datatype:"json",
-    async: false,
-    data: {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, tabla:p_tabla, tc_ficha:p_ficha, tc_categoria1:p_categoria1},    
-    success: function(data){
+    url     : "ajax.php",
+    type    : "POST",
+    datatype: "json",
+    async   : false,
+    data    : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, tabla:p_tabla, tc_categoria1:p_categoria1, tc_categoria2:p_categoria2},
+    success : function(data){
       rpta_select_categoria = data;
     }
   });
   return rpta_select_categoria;
 }
+
+///:: BUSCAR DATA EN BD :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::///
+function f_buscar_data_bd(p_tabla_bd, p_campo_bd, p_data_buscar){
+  let rpta_data;
+  Accion = 'buscar_data_bd';
+  $.ajax({
+    url       : "ajax.php",
+    type      : "POST",
+    datatype  : "json",
+    async     : false,
+    data      : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, tabla_bd:p_tabla_bd, campo_bd:p_campo_bd, data_buscar:p_data_buscar},    
+    success   : function(data){
+      rpta_data = $.parseJSON(data);
+    }
+  });
+  return rpta_data;
+}
+///:: FIN BUSCAR DATA EN BD :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::///
 
 //::::::::::::::::::::::::::::::::: FUNCIONES ACCESOS :::::::::::::::::::::::::::::::::::::///
 function f_creacion_tab(p_nombre_tab,p_tipo_tab){

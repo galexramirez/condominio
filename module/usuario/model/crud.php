@@ -18,6 +18,17 @@ class crud
 		$this->conexion = $instancia->Conectar(); 	
 	}
 
+	function buscar_data_bd($tabla_bd, $campo_bd, $data_buscar)
+	{
+		$consulta = "SELECT * FROM `$tabla_bd` WHERE `$campo_bd` = '$data_buscar'";
+		$resultado = $this->conexion->prepare($consulta);
+		$resultado->execute();
+		$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+		return $data;
+		$this->conexion=null;
+	}
+
 	function leer_usuario()
 	{
         $consulta="SELECT * FROM `glo_usuario`";
@@ -81,9 +92,9 @@ class crud
         $this->conexion=null;	
 	}  		
 
-	function select_categoria($tabla,$tc_ficha,$tc_categoria1)
+	function select_categoria($tabla, $tc_categoria1, $tc_categoria2)
 	{
-		$consulta="SELECT `$tabla`.`tc_categoria2` AS `Detalle` FROM `$tabla` WHERE `$tabla`.`tc_ficha` = '$tc_ficha' AND `$tabla`.`tc_categoria1`= '$tc_categoria1' ORDER BY`Detalle` ASC";
+		$consulta="SELECT `$tabla`.`tc_categoria3` AS `Detalle` FROM `$tabla` WHERE `$tabla`.`tc_categoria1` = '$tc_categoria1' AND `$tabla`.`tc_categoria2`= '$tc_categoria2' ORDER BY`Detalle` ASC";
 
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();        

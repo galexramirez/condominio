@@ -88,8 +88,8 @@ switch ($Accion)
       $data_buscar   = $_POST['data_buscar'];
 
       MController($modulo,'logico');
-      $InstanciaAjax = new logico();
-      $Respuesta     = $InstanciaAjax->buscar_data_bd($tabla_bd, $campo_bd, $data_buscar);
+      $instancia_ajax = new logico();
+      $respuesta     = $instancia_ajax->buscar_data_bd($tabla_bd, $campo_bd, $data_buscar);
    break;
 
    case 'select_maestro':
@@ -433,7 +433,7 @@ switch ($Accion)
 
    case 'leer_tc_usuario':
       MModel($modulo,'crud');
-      $instancia_ajax= new crud();
+      $instancia_ajax = new crud();
       $respuesta = $instancia_ajax->leer_tc_usuario();
    break;
 
