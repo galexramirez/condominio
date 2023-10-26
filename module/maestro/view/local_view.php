@@ -40,17 +40,23 @@
 			      		<div class="row">
 			      		    <div class="col-lg-6">
 								<div class="row">
-									<div class="col-lg-12">
+									<div class="col-lg-6">
 										<div class="form-group">
 						          			<label for="maestro_id" class="col-form-label form-control-sm">DNI</label>
 						           			<input type="text" class="form-control form-control-sm" id="maestro_id" maxlength="8">
 				  		       			</div>
 									</div>
+									<div class="col-lg-6">
+				  		        		<div class="form-group">
+						           			<label for="maes_nombre_corto" class="col-form-label form-control-sm">NOMBRE CORTO</label>
+						           			<input type="text" class="form-control text-uppercase form-control-sm" id="maes_nombre_corto" maxlength="45">
+				  		        		</div>
+									</div>
 								</div>
 				  		        <div class="row">
 									<div class="col-lg-12">
 				  		        		<div class="form-group">
-						           			<label for="maes_apellidos_nombres" class="col-form-label form-control-sm">NOMBRES</label>
+						           			<label for="maes_apellidos_nombres" class="col-form-label form-control-sm">APELLIDOS Y NOMBRES</label>
 						           			<input type="text" class="form-control text-uppercase form-control-sm" id="maes_apellidos_nombres" maxlength="60">
 				  		        		</div>
 									</div>
@@ -64,15 +70,20 @@
 						       			</div>               
 						    		</div>
 								</div>
-								<div class="row">
-						    		<div class="col-lg-12">
-						        		<div class="form-group">
-						            		<label for="maes_estado" class="col-form-label form-control-sm">ESTADO</label>
-						            		<select class="form-control form-control-sm" id="maes_estado">
-											</select>
-				  		        		</div>
-			      		    		</div>  
-								</div>
+			      				<div class="row">
+			      				    <div class="col-lg-6">
+			      				       	<div class="form-group">
+			      				        	<label for="maes_fecha_ingreso" class="col-form-label form-control-sm">F.INGRESO</label>
+			      				        	<input type="date" class="form-control form-control-sm" id="maes_fecha_ingreso">
+			      				        </div>
+			      				    </div>    
+			      				    <div class="col-lg-6">    
+			      				        <div class="form-group">
+			      				        	<label for="maes_fecha_cese" class="col-form-label form-control-sm">F.CESE</label>
+			      				        	<input type="date" class="form-control form-control-sm" id="maes_fecha_cese">
+			      				        </div>            
+			      				    </div>    
+			      				</div>   
 			      		    </div>
 			      		    <div class="col-lg-6">
 								<div class="row">
@@ -96,21 +107,14 @@
 							</div>    
 			      		</div>
 			      		<div class="row">
-			      		    <div class="col-lg-6">
-			      		       	<div class="form-group">
-			      		        	<label for="maes_fecha_ingreso" class="col-form-label form-control-sm">FECHA DE INGRESO</label>
-			      		        	<input type="date" class="form-control form-control-sm" id="maes_fecha_ingreso">
-			      		        </div>
-			      		    </div>    
-			      		    <div class="col-lg-6">    
-			      		        <div class="form-group">
-			      		        	<label for="maes_fecha_cese" class="col-form-label form-control-sm">FECHA DE CESE</label>
-			      		        	<input type="date" class="form-control form-control-sm" id="maes_fecha_cese">
-			      		        </div>            
-			      		    </div>    
-			      		</div>   
-			      		<div class="row">
-			      		    <div class="col-lg-6">
+						    <div class="col-lg-2">
+						        <div class="form-group">
+						            <label for="maes_estado" class="col-form-label form-control-sm">ESTADO</label>
+						            <select class="form-control form-control-sm" id="maes_estado">
+									</select>
+				  		        </div>
+			      		    </div>  
+							<div class="col-lg-6">
 								<div class="form-group">
 			      		        	<label for="maes_email" class="col-form-label form-control-sm">CORREO ELECTRONICO</label>
 									<div class="input-group mb-3">
@@ -119,13 +123,14 @@
 									</div>
 								</div>
 			      		    </div>
-							<div class="col-lg-6">
+							<div class="col-lg-4">
 				  		        <div class="form-group">
-									<label for="maes_perfil_evaluacion" class="col-form-label form-control-sm">PERFIL</label>
-						            <select class="form-control form-control-sm" id="maes_perfil_evaluacion">
+						        	<label for="maes_distrito" class="col-form-label form-control-sm">DISTRITO</label>
+						        	<select class="form-control form-control-sm" id="maes_distrito">
 									</select>
-								</div> 
+				  		        </div> 
 			      		    </div>    
+
 				      	</div>
 						<div class="row">
 			      		    <div class="col-lg-12">
@@ -136,13 +141,6 @@
 			      		    </div>    
 			      		</div>  
 						  <div class="row">
-			      		    <div class="col-lg-6">
-				  		        <div class="form-group">
-						        	<label for="maes_distrito" class="col-form-label form-control-sm">DISTRITO</label>
-						        	<select class="form-control form-control-sm" id="maes_distrito">
-									</select>
-				  		        </div> 
-			      		    </div>    
 			      		</div>
 			      	</div>
 			      	<div class="modal-footer">

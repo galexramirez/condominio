@@ -10,29 +10,29 @@ MoS = "module";
 NombreMoS = "ajuste_generales";
 // Variable para cambiar el lenguaje a español de un datatable
 var idioma_espanol = {
-  "lengthMenu": "&nbsp&nbsp&nbsp&nbspMostrar _MENU_ registros",
-  "zeroRecords": "No se encuentran resultados",
-  "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-  "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+  "lengthMenu"  : "&nbsp&nbsp&nbsp&nbspMostrar _MENU_ registros",
+  "zeroRecords" : "No se encuentran resultados",
+  "info"        : "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+  "infoEmpty"   : "Mostrando registros del 0 al 0 de un total de 0 registros",
   "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
-  "sSearch": "Buscar:",
-  "oPaginate": 
+  "sSearch"     : "Buscar:",
+  "oPaginate"   : 
     {
-      "sFirst": "Primero",
-      "sLast": "Ultimo",
-      "sNext": "Siguiente",
-      "sPrevious": "Anterior"
+      "sFirst"  : "Primero",
+      "sLast"   : "Ultimo",
+      "sNext"   : "Siguiente",
+      "sPrevious" : "Anterior"
     },
-  "select":
+  "select"      :
     {
-      "rows":
+      "rows"    :
       {
-        "_": "Seleccionadas %d filas",
-        "0": "Click a una fila para seleccionarla",
-        "1": "Seleccionada 1 fila"
+        "_"     : "Seleccionadas %d filas",
+        "0"     : "Click a una fila para seleccionarla",
+        "1"     : "Seleccionada 1 fila"
       }
     },
-  "sProcessing": "Procesando...",
+  "sProcessing" : "Procesando...",
 };
 
 ///::::::::::::::::::::::::::::: JS DOM INICIO ::::::::::::::::::::::::::::::::::::::::::::///
@@ -60,6 +60,24 @@ function f_select_categoria(p_tabla,p_ficha,p_categoria1){
   });
   return rpta_select_categoria;
 }
+
+///:: BUSCAR DATA EN BD :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::///
+function f_buscar_data_bd(p_tabla_bd, p_campo_bd, p_data_buscar){
+  let rpta_data;
+  Accion = 'buscar_data_bd';
+  $.ajax({
+    url       : "Ajax.php",
+    type      : "POST",
+    datatype  : "json",
+    async     : false,
+    data      : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, tabla_bd:p_tabla_bd, campo_bd:p_campo_bd, data_buscar:p_data_buscar},    
+    success   : function(data){
+      rpta_data = $.parseJSON(data);
+    }
+  });
+  return rpta_data;
+}
+///:: FIN BUSCAR DATA EN BD :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::///
 
 //::::::::::::::::::::::::::::::::: FUNCIONES ACCESOS :::::::::::::::::::::::::::::::::::::///
 function f_creacion_tab(p_nombre_tab,p_tipo_tab){

@@ -8,6 +8,15 @@ class logico
 		MView($this->modulo,'local_view',compact('NombreDeModuloVista') );
 	}
 
+	public function buscar_data_bd($tabla_bd, $campo_bd, $data_buscar)
+    {
+        MModel($this->modulo,'crud');
+        $instancia_ajax = new crud();
+        $respuesta = $instancia_ajax->buscar_data_bd($tabla_bd, $campo_bd, $data_buscar);
+
+        print json_encode($respuesta, JSON_UNESCAPED_UNICODE);
+    }
+
 	public function select_objeto($cacces_nombre_modulo)
 	{
 		$tabla_bd = "glo_modulo";
@@ -112,12 +121,22 @@ class logico
 		echo $html;	
 	}
 
-	public function validar_permisos($per_usuario_id, $per_modulo_id)
+	public function validar_permisos($per_usuario_id, $per_modulo_nombre)
 	{
+		$validar = "";
+		
+		MModel($this->modulo,'crud');
+        $instancia_ajax = new crud();
+        $respuesta = $instancia_ajax->buscar_data_bd('glo_modulo','mod_nombre',$per_modulo_nombre);
+		
+        foreach($respuesta as $row){
+			$per_modulo_id = $row['modulo_id'];
+		}
+		
 		MModel($this->modulo,'crud');
 		$instancia_ajax = new crud();
 		$respuesta = $instancia_ajax->validar_permisos($per_usuario_id,$per_modulo_id);
-		$validar = "";
+		
 		if($respuesta==false){
 			$validar = "NO";
 		}else{

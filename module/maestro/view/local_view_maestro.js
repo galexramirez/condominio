@@ -54,6 +54,12 @@ $(document).ready(function(){
         "dataSrc":""
     },
     "columns": columnas_tabla,
+    "columnDefs"      : [
+        { 
+          "className"   : "text-center",
+          "targets"     : [0,4,5,6]
+        },
+    ],    
     "order": [[1, 'asc']]
     });     
 
@@ -62,12 +68,16 @@ $(document).ready(function(){
     ///:::::::::::::::::::::::::: CREA Y EDITA MAESTRO ::::::::::::::::::::::::::::::::::::///
     $('#form_maestro').submit(function(e){                         
         e.preventDefault();
-        let valida_fotografia ="";
-        let valida_maestro = "";
+        let valida_fotografia   ="";
+        let valida_maestro      = "";
+        let a_data              = [];
+        let t_msg               = '';
+
         valida_fotografia = document.getElementById('maes_fotografia').value;
 
         maestro_id              = $.trim($('#maestro_id').val());    
         maes_apellidos_nombres  = $.trim($('#maes_apellidos_nombres').val());
+        maes_nombre_corto       = $.trim($('#maes_nombre_corto').val());
         maes_cargo_actual       = $.trim($('#maes_cargo_actual').val());    
         maes_estado             = $.trim($('#maes_estado').val());    
         maes_fecha_ingreso      = $.trim($('#maes_fecha_ingreso').val());
@@ -75,66 +85,82 @@ $(document).ready(function(){
         maes_email              = $.trim($('#maes_email').val());
         maes_direccion          = $.trim($('#maes_direccion').val());
         maes_distrito           = $.trim($('#maes_distrito').val());
-        maes_perfil_evaluacion  = $.trim($('#maes_perfil_evaluacion').val());
+        
     
-        valida_maestro = f_validar_maestro(maestro_id, maes_apellidos_nombres, maes_cargo_actual, maes_estado, maes_fecha_ingreso,maes_fecha_cese, maes_email, maes_direccion, maes_distrito, maes_perfil_evaluacion);
+        valida_maestro = f_validar_maestro(maestro_id, maes_apellidos_nombres, maes_nombre_corto, maes_cargo_actual, maes_estado, maes_fecha_ingreso,maes_fecha_cese, maes_email, maes_direccion, maes_distrito);
         if(maes_fecha_cese=="") {
             maes_fecha_cese = "NULL";
         }else{
             maes_fecha_cese = "'"+maes_fecha_cese+"'";
         }
 
+        if(maestro_id!=''){
+            a_data = f_buscar_data_bd('glo_maestro', 'maestro_id', maestro_id);
+            if(a_data.length>0 && opcion_maestro=="CREAR"){
+                valida_maestro  = 'invalido';
+                t_msg       += '<br>Número DNI Existe!!!';
+                $("#maestro_id").addClass("color-error");
+            }    
+        }
+        if(maes_email!=''){
+            a_data = f_buscar_data_bd('glo_maestro', 'maes_email', maes_email);
+            if(a_data.length>0 && opcion_maestro=="CREAR"){
+                valida_maestro  = 'invalido';
+                t_msg       += '<br>Correo Eléctonico Existe!!!';
+                $("#maes_email").addClass("color-error");
+            }    
+            if(a_data.length>1 && opcion_maestro=='EDITAR'){
+                valida_maestro  = 'invalido';
+                t_msg       += '<br>Correo Eléctonico Existe!!!';
+                $("#maes_email").addClass("color-error");
+            }
+        }
+        if(maes_nombre_corto!=''){
+            a_data = f_buscar_data_bd('glo_maestro', 'maes_nombre_corto', maes_nombre_corto);
+            if(a_data.length>0 && opcion_maestro=="CREAR"){
+                valida_maestro  = 'invalido';
+                t_msg       += '<br>Nombre Corto Existe!!!';
+                $("#maes_nombre_corto").addClass("color-error");
+            }
+            if(a_data.length>1 && opcion_maestro=='EDITAR'){
+                valida_maestro  = 'invalido';
+                t_msg       += '<br>Nombre Corto Existe!!!';
+                $("#maes_nombre_corto").addClass("color-error");
+            }        
+        }
+
         if(valida_maestro=="invalido"){
             Swal.fire({
-                position: 'center',
-                icon: 'error',
-                title: '*Falta Completar Información!!!',
-                showConfirmButton: false,
-                timer: 1500
+                position            : 'center',
+                icon                : 'error',
+                title               : '*Falta Completar Información!!!'+t_msg,
+                showConfirmButton   : false,
+                timer               : 1500
               })
         }else{
             $("#btn_guardar_maestro").prop("disabled",true);
-            if(opcion_maestro = 1) {   /// CREAR
-                Accion = 'crear_maestro';
-                $("#btn_guardar_maestro").prop("disabled",true);
-                $.ajax({
-                    url: "ajax.php",
-                    type: "POST",
-                    datatype:"json",    
-                    data:  { MoS:MoS,NombreMoS:NombreMoS,Accion:Accion,maestro_id:maestro_id,maes_apellidos_nombres:maes_apellidos_nombres,maes_cargo_actual:maes_cargo_actual,maes_estado:maes_estado,maes_fecha_ingreso:maes_fecha_ingreso,maes_fecha_cese:maes_fecha_cese,maes_email:maes_email,maes_direccion:maes_direccion,maes_distrito:maes_distrito,maes_perfil_evaluacion:maes_perfil_evaluacion},    
-                    success: function(data) {
-                        if(valida_fotografia.length>0){
-                            f_grabar_fotografia(maestro_id);
-                        }
-                        tabla_maestro.ajax.reload(null, false);
+            if(opcion_maestro == 'CREAR') { Accion = 'crear_maestro'; }
+            if(opcion_maestro == 'EDITAR') { Accion = 'editar_maestro'; }    
+            $.ajax({
+                url: "ajax.php",
+                type: "POST",
+                datatype:"json",    
+                data:  { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, maestro_id:maestro_id, maes_apellidos_nombres:maes_apellidos_nombres, maes_nombre_corto:maes_nombre_corto, maes_cargo_actual:maes_cargo_actual, maes_estado:maes_estado, maes_fecha_ingreso:maes_fecha_ingreso, maes_fecha_cese:maes_fecha_cese, maes_email:maes_email, maes_direccion:maes_direccion, maes_distrito:maes_distrito},    
+                success: function(data) {
+                    if(valida_fotografia.length>0){
+                        f_grabar_fotografia(maestro_id);
                     }
-                });
-                $('#modal_crud').modal('hide');
-            } 
-            if(opcion_maestro = 2) {   /// EDITAR
-                Accion = 'editar_maestro';
-                $("#btn_guardar_maestro").prop("disabled",true);
-                $.ajax({
-                    url: "ajax.php",
-                    type: "POST",
-                    datatype:"json",    
-                    data:  { MoS:MoS,NombreMoS:NombreMoS,Accion:Accion,maestro_id:maestro_id,maes_apellidos_nombres:maes_apellidos_nombres,maes_cargo_actual:maes_cargo_actual,maes_estado:maes_estado,maes_fecha_ingreso:maes_fecha_ingreso,maes_fecha_cese:maes_fecha_cese,maes_email:maes_email,maes_direccion:maes_direccion,maes_distrito:maes_distrito,maes_perfil_evaluacion:maes_perfil_evaluacion},    
-                    success: function(data) {
-                        if(valida_fotografia.length>0){
-                            f_grabar_fotografia(maestro_id);
-                        }
-                        tabla_maestro.ajax.reload(null, false);
-                    }
-                });
-                $('#modal_crud').modal('hide');
-            } 
+                    tabla_maestro.ajax.reload(null, false);
+                }
+            });
             $("#btn_guardar_maestro").prop("disabled",false);
+            $('#modal_crud').modal('hide');
         }
     });
 
     ///::::::::::::::::::::::::::::: BOTON NUEVO REGISTRO::::::::::::::::::::::::::::::::::///
     $(document).on("click", ".btn_nuevo", function(){		        
-        opcion_maestro = 1; // CREAR
+        opcion_maestro = 'CREAR';
         f_limpia_maestro();          
         f_combos_maestro();
         $("#maestro_id").prop('disabled', false);
@@ -155,7 +181,7 @@ $(document).ready(function(){
     $(document).on("click", ".btn_editar", function(){		        
         let foto_maestro="";
         foto_editar="";
-        opcion_maestro = 2;// Editar
+        opcion_maestro = 'EDITAR';
         f_limpia_maestro();
         f_combos_maestro();
         $("#maestro_id").prop('disabled', true);
@@ -164,17 +190,19 @@ $(document).ready(function(){
 
         maestro_id              = fila_maestro.find('td:eq(0)').text();
         maes_apellidos_nombres  = fila_maestro.find('td:eq(1)').text();
-        maes_cargo_actual       = fila_maestro.find('td:eq(2)').text();
-        maes_estado             = fila_maestro.find('td:eq(3)').text();
-        maes_fecha_ingreso      = fila_maestro.find('td:eq(4)').text();
-        maes_fecha_cese         = fila_maestro.find('td:eq(5)').text();
-        maes_email              = fila_maestro.find('td:eq(6)').text();
-        maes_direccion          = fila_maestro.find('td:eq(7)').text();
-        maes_distrito           = fila_maestro.find('td:eq(8)').text();
-        maes_perfil_evaluacion  = fila_maestro.find('td:eq(9)').text();
+        maes_nombre_corto       = fila_maestro.find('td:eq(2)').text();
+        maes_cargo_actual       = fila_maestro.find('td:eq(3)').text();
+        maes_estado             = fila_maestro.find('td:eq(4)').text();
+        maes_fecha_ingreso      = fila_maestro.find('td:eq(5)').text();
+        maes_fecha_cese         = fila_maestro.find('td:eq(6)').text();
+        maes_email              = fila_maestro.find('td:eq(7)').text();
+        maes_direccion          = fila_maestro.find('td:eq(8)').text();
+        maes_distrito           = fila_maestro.find('td:eq(9)').text();
+        
 
         $("#maestro_id").val(maestro_id);
         $("#maes_apellidos_nombres").val(maes_apellidos_nombres);
+        $("#maes_nombre_corto").val(maes_nombre_corto);
         $("#maes_cargo_actual").val(maes_cargo_actual);
         $("#maes_estado").val(maes_estado);
         $("#maes_fecha_ingreso").val(maes_fecha_ingreso);
@@ -182,8 +210,7 @@ $(document).ready(function(){
         $("#maes_email").val(maes_email);
         $("#maes_direccion").val(maes_direccion);
         $("#maes_distrito").val(maes_distrito);
-        $("#maes_perfil_evaluacion").val(maes_perfil_evaluacion);
-    
+        
         foto_maestro = f_buscar_fotografia(maestro_id);
         if(foto_maestro == ""){
             foto_editar = '<img src="module/maestro/view/img/usuario.png" height="215px" width="220px" alt="" />';        
@@ -271,7 +298,7 @@ $(document).ready(function(){
 ///:::::::::::::::::::::::::::::::::: FUNCIONES DE MAESTRO ::::::::::::::::::::::::::::::::///
 
 ///:::::::::::: FUNCION PARA VALIDAR LOS DATOS INGRESADOS AL FORMULARIO :::::::::::::::::::///
-function f_validar_maestro(p_maestro_id, p_maes_apellidos_nombres, p_maes_cargo_actual, p_maes_estado, p_maes_fecha_ingreso, p_maes_fecha_cese, p_maes_email, p_maes_direccion, p_maes_distrito,  p_maes_perfil_evaluacion){
+function f_validar_maestro(p_maestro_id, p_maes_nombre_corto, p_maes_apellidos_nombres, p_maes_cargo_actual, p_maes_estado, p_maes_fecha_ingreso, p_maes_fecha_cese, p_maes_email, p_maes_direccion, p_maes_distrito){
     f_limpia_maestro();
     NoLetrasMayuscEspacio=/[^A-Z \Ñ \Ä \Ë \Ö \Ü \Á \É \Í \Ó \Ú]/;
     let rpta_validar_maestro="";    
@@ -280,7 +307,12 @@ function f_validar_maestro(p_maestro_id, p_maes_apellidos_nombres, p_maes_cargo_
         $("#maestro_id").addClass("color-error");
         rpta_validar_maestro = "invalido";
     }
-    
+
+    if(p_maes_nombre_corto==""){
+        $("#maes_nombre_corto").addClass("color-error");
+        rpta_validar_maestro = "invalido";
+    }
+
     if(p_maes_apellidos_nombres==""){
         $("#maes_apellidos_nombres").addClass("color-error");
         rpta_validar_maestro = "invalido";
@@ -291,7 +323,7 @@ function f_validar_maestro(p_maestro_id, p_maes_apellidos_nombres, p_maes_cargo_
         rpta_validar_maestro = "invalido";
     }
 
-    if(p_maes_estado=="" || NoLetrasMayuscEspacio.test(p_maes_estado)){
+    if(p_maes_estado==""){
         $("#maes_estado").addClass("color-error");
         rpta_validar_maestro = "invalido";
     }
@@ -305,9 +337,10 @@ function f_validar_maestro(p_maestro_id, p_maes_apellidos_nombres, p_maes_cargo_
 }
 ///:::::::::::: FIN FUNCION PARA VALIDAR LOS DATOS INGRESADOS AL FORMULARIO :::::::::::::::///
 
-///::::::::::::::::: CAMBIA EL COLOR DE COMPOS OBSERVADOS EN LA VALIDACION ::::::::::::::::/// 
+///::::::::::::::::: CAMBIA EL COLOR DE COMPOS OBSERVADOS EN LA validar_maestro ::::::::::::::::/// 
 function f_limpia_maestro(){
     $("#maestro_id").removeClass("color-error");
+    $("#maes_nombre_corto").removeClass("color-error");
     $("#maes_apellidos_nombres").removeClass("color-error");
     $("#maes_cargo_actual").removeClass("color-error");
     $("#maes_estado").removeClass("color-error");
@@ -316,9 +349,8 @@ function f_limpia_maestro(){
     $("#maes_email").removeClass("color-error");
     $("#maes_direccion").removeClass("color-error");
     $("#maes_distrito").removeClass("color-error");
-    $("#maes_perfil_evaluacion").removeClass("color-error");
 }
-///:::::::::::::: FIN CAMBIA EL COLOR DE COMPOS OBSERVADOS EN LA VALIDACION :::::::::::::::/// 
+///:::::::::::::: FIN CAMBIA EL COLOR DE COMPOS OBSERVADOS EN LA validar_maestro :::::::::::::::/// 
 
 ///::::::::::::::::::::::::::::::::: BUSCAR FOTOGRAFIA ::::::::::::::::::::::::::::::::::::///
 function f_buscar_fotografia(p_maestro_id){
@@ -376,9 +408,6 @@ function f_combos_maestro(){
 
     select_html_maestro = f_select_categoria("glo_tc_maestro","MAESTRO","CARGO");
     $("#maes_cargo_actual").html(select_html_maestro);
-
-    select_html_maestro = f_select_categoria("glo_tc_maestro","MAESTRO","PERFIL");
-    $("#maes_perfil_evaluacion").html(select_html_maestro);
 
     select_html_maestro = f_select_categoria("glo_tc_maestro","MAESTRO","DISTRITO");
     $("#maes_distrito").html(select_html_maestro);

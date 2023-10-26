@@ -70,6 +70,16 @@ switch ($Accion)
       $respuesta = $instancia_ajax->select_categoria($tabla, $tc_ficha, $tc_categoria1);
    break;
 
+   case 'buscar_data_bd':
+      $tabla_bd      = $_POST['tabla_bd'];
+      $campo_bd      = $_POST['campo_bd'];
+      $data_buscar   = $_POST['data_buscar'];
+
+      MController($modulo,'logico');
+      $InstanciaAjax = new logico();
+      $Respuesta     = $InstanciaAjax->buscar_data_bd($tabla_bd, $campo_bd, $data_buscar);
+   break;
+
    case 'select_maestro':
       MController($modulo,'logico');
       $instancia_ajax = new logico();
@@ -101,12 +111,12 @@ switch ($Accion)
    break;
 
    case 'validar_permisos':
-      $per_usuario_id   = $_POST['per_usuario_id'];
-      $per_modulo_id    = $_POST['per_modulo_id'];
+      $per_usuario_id    = $_POST['per_usuario_id'];
+      $per_modulo_nombre = $_POST['per_modulo_nombre'];
 
       MController($modulo,'logico');
       $instancia_ajax = new logico();
-      $respuesta = $instancia_ajax->validar_permisos($per_usuario_id,$per_modulo_id);
+      $respuesta = $instancia_ajax->validar_permisos($per_usuario_id, $per_modulo_nombre);
    break;
 
    case 'select_usuario':
@@ -235,10 +245,12 @@ switch ($Accion)
       $mod_nombre       = $_POST['mod_nombre'];
       $mod_nombre_vista = $_POST['mod_nombre_vista'];
       $mod_icono        = $_POST['mod_icono'];
+      $mod_tipo         = $_POST['mod_tipo'];
+      $mod_plegable     = $_POST['mod_plegable'];
 
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
-      $respuesta = $instancia_ajax->crear_modulo($mod_nombre,$mod_nombre_vista,$mod_icono);
+      $respuesta = $instancia_ajax->crear_modulo($mod_nombre, $mod_nombre_vista, $mod_icono, $mod_tipo, $mod_plegable);
    break;
 
    case 'editar_modulo':
@@ -246,10 +258,12 @@ switch ($Accion)
       $mod_nombre       = $_POST['mod_nombre'];
       $mod_nombre_vista = $_POST['mod_nombre_vista'];
       $mod_icono        = $_POST['mod_icono'];
+      $mod_tipo         = $_POST['mod_tipo'];
+      $mod_plegable     = $_POST['mod_plegable'];
 
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
-      $respuesta = $instancia_ajax->editar_modulo($modulo_id,$mod_nombre,$mod_nombre_vista,$mod_icono);
+      $respuesta = $instancia_ajax->editar_modulo($modulo_id, $mod_nombre, $mod_nombre_vista, $mod_icono, $mod_tipo, $mod_plegable);
    break;
 
    case 'borrar_modulo':
@@ -268,25 +282,23 @@ switch ($Accion)
 
    case 'crear_permisos':
       $per_usuario_id      = $_POST['per_usuario_id'];
-      $per_modulo_id       = $_POST['per_modulo_id'];
-      $per_nivel           = $_POST['per_nivel'];
+      $per_modulo_nombre   = $_POST['per_modulo_nombre'];
       $per_modulo_inicio   = $_POST['per_modulo_inicio'];
 
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
-      $respuesta = $instancia_ajax->crear_permisos($per_usuario_id,$per_modulo_id,$per_nivel,$per_modulo_inicio);
+      $respuesta = $instancia_ajax->crear_permisos($per_usuario_id, $per_modulo_nombre, $per_modulo_inicio);
    break;
 
    case 'editar_permisos':
       $permiso_id          = $_POST['permiso_id'];
       $per_usuario_id      = $_POST['per_usuario_id'];
-      $per_modulo_id       = $_POST['per_modulo_id'];
-      $per_nivel           = $_POST['per_nivel'];
+      $per_modulo_nombre   = $_POST['per_modulo_nombre'];
       $per_modulo_inicio   = $_POST['per_modulo_inicio'];
 
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
-      $respuesta = $instancia_ajax->editar_permisos($permiso_id,$per_usuario_id,$per_modulo_id,$per_nivel,$per_modulo_inicio);
+      $respuesta = $instancia_ajax->editar_permisos($permiso_id, $per_usuario_id, $per_modulo_nombre, $per_modulo_inicio);
    break;
 
    case 'borrar_permisos':

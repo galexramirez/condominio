@@ -17,9 +17,20 @@ class crud
 		$this->conexion = $instancia->Conectar(); 	
 	}
 
+	function buscar_data_bd($tabla_bd, $campo_bd, $data_buscar)
+	{
+		$consulta = "SELECT * FROM `$tabla_bd` WHERE `$campo_bd` = '$data_buscar'";
+		$resultado = $this->conexion->prepare($consulta);
+		$resultado->execute();
+		$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+		return $data;
+		$this->conexion=null;
+	}
+
 	function leer_maestro()
 	{
-        $consulta="SELECT `maestro_id`, `maes_apellidos_nombres`, `maes_cargo_actual`, `maes_estado`, DATE_FORMAT(`maes_fecha_ingreso`,'%Y-%m-%d') AS `maes_fecha_ingreso`, DATE_FORMAT(`maes_fecha_cese`,'%Y-%m-%d') AS `maes_fecha_cese`, `maes_email`, `maes_direccion`, `maes_distrito`, `maes_perfil_evaluacion` FROM `glo_maestro`";
+        $consulta="SELECT `maestro_id`, `maes_apellidos_nombres`, `maes_nombre_corto`, `maes_cargo_actual`, `maes_estado`, DATE_FORMAT(`maes_fecha_ingreso`,'%Y-%m-%d') AS `maes_fecha_ingreso`, DATE_FORMAT(`maes_fecha_cese`,'%Y-%m-%d') AS `maes_fecha_cese`, `maes_email`, `maes_direccion`, `maes_distrito` FROM `glo_maestro`";
 
         $resultado = $this->conexion->prepare($consulta);
         $resultado->execute();        
@@ -29,9 +40,9 @@ class crud
         $this->conexion=null;
    	}   
 		 
-	function crear_maestro($maestro_id,$maes_apellidos_nombres,$maes_cargo_actual,$maes_estado,$maes_fecha_ingreso,$maes_fecha_cese,$maes_email,$maes_direccion,$maes_distrito,$maes_perfil_evaluacion)
+	function crear_maestro($maestro_id, $maes_apellidos_nombres, $maes_nombre_corto, $maes_cargo_actual, $maes_estado, $maes_fecha_ingreso, $maes_fecha_cese, $maes_email, $maes_direccion, $maes_distrito)
    	{
-		$consulta = "INSERT INTO `glo_maestro`(`maestro_id`, `maes_apellidos_nombres`, `maes_cargo_actual`, `maes_estado`, `maes_fecha_ingreso`, `maes_fecha_cese`,`maes_email`, `maes_direccion`, `maes_distrito`, `maes_perfil_evaluacion`) VALUES ('$maestro_id','$maes_apellidos_nombres','$maes_cargo_actual','$maes_estado','$maes_fecha_ingreso',$maes_fecha_cese,'$maes_email','$maes_direccion','$maes_distrito','$maes_perfil_evaluacion')";
+		$consulta = "INSERT INTO `glo_maestro`(`maestro_id`, `maes_apellidos_nombres`, `maes_cargo_actual`, `maes_estado`, `maes_fecha_ingreso`, `maes_fecha_cese`,`maes_email`, `maes_direccion`, `maes_distrito`, `maes_nombre_corto`) VALUES ('$maestro_id','$maes_apellidos_nombres','$maes_cargo_actual','$maes_estado','$maes_fecha_ingreso',$maes_fecha_cese,'$maes_email','$maes_direccion','$maes_distrito','$maes_nombre_corto')";
 
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();   
@@ -49,9 +60,9 @@ class crud
         $this->conexion=null;
 	}
 	
-	function editar_maestro($maestro_id,$maes_apellidos_nombres,$maes_cargo_actual,$maes_estado,$maes_fecha_ingreso,$maes_fecha_cese,$maes_email,$maes_direccion,$maes_distrito,$maes_perfil_evaluacion)
+	function editar_maestro($maestro_id, $maes_apellidos_nombres, $maes_nombre_corto, $maes_cargo_actual, $maes_estado, $maes_fecha_ingreso, $maes_fecha_cese, $maes_email, $maes_direccion, $maes_distrito)
    	{
-		$consulta = "UPDATE `glo_maestro` SET `maestro_id`='$maestro_id',`maes_apellidos_nombres`='$maes_apellidos_nombres',`maes_cargo_actual`='$maes_cargo_actual',`maes_estado`='$maes_estado',`maes_fecha_ingreso`='$maes_fecha_ingreso',`maes_fecha_cese`=$maes_fecha_cese, `maes_email`='$maes_email', `maes_direccion`='$maes_direccion',`maes_distrito`='$maes_distrito',`maes_perfil_evaluacion`='$maes_perfil_evaluacion' WHERE `maestro_id`='$maestro_id'";		
+		$consulta = "UPDATE `glo_maestro` SET `maestro_id`='$maestro_id',`maes_apellidos_nombres`='$maes_apellidos_nombres',`maes_cargo_actual`='$maes_cargo_actual',`maes_estado`='$maes_estado',`maes_fecha_ingreso`='$maes_fecha_ingreso',`maes_fecha_cese`=$maes_fecha_cese, `maes_email`='$maes_email', `maes_direccion`='$maes_direccion',`maes_distrito`='$maes_distrito',`maes_nombre_corto`='$maes_nombre_corto' WHERE `maestro_id`='$maestro_id'";		
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();   
 

@@ -1,3 +1,8 @@
+th{
+    font-size: 12px;
+    font-weight: 500;
+}
+
 table.dataTable thead {
     background: #2A4C38;
     color:white;

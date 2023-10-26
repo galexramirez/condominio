@@ -71,6 +71,16 @@ switch ($Accion)
       $respuesta = $instancia_ajax->select_categoria($tabla, $tc_ficha, $tc_categoria1);
    break;
 
+   case 'buscar_data_bd':
+      $tabla_bd      = $_POST['tabla_bd'];
+      $campo_bd      = $_POST['campo_bd'];
+      $data_buscar   = $_POST['data_buscar'];
+
+      MController($modulo,'logico');
+      $InstanciaAjax = new logico();
+      $Respuesta     = $InstanciaAjax->buscar_data_bd($tabla_bd, $campo_bd, $data_buscar);
+   break;
+
    case 'leer_maestro':
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
@@ -79,6 +89,7 @@ switch ($Accion)
 
    case 'crear_maestro':
       $maestro_id             = $_POST['maestro_id'];
+      $maes_nombre_corto      = strtoupper($_POST['maes_nombre_corto']);
       $maes_apellidos_nombres = strtoupper($_POST['maes_apellidos_nombres']);
       $maes_cargo_actual      = $_POST['maes_cargo_actual'];
       $maes_estado            = $_POST['maes_estado'];
@@ -87,15 +98,15 @@ switch ($Accion)
       $maes_email             = $_POST['maes_email'];
       $maes_direccion         = strtoupper($_POST['maes_direccion']);
       $maes_distrito          = $_POST['maes_distrito'];
-      $maes_perfil_evaluacion = $_POST['maes_perfil_evaluacion'];
       
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
-      $respuesta = $instancia_ajax->crear_maestro($maestro_id,$maes_apellidos_nombres,$maes_cargo_actual,$maes_estado,$maes_fecha_ingreso,$maes_fecha_cese,$maes_email,$maes_direccion,$maes_distrito,$maes_perfil_evaluacion);
+      $respuesta = $instancia_ajax->crear_maestro($maestro_id, $maes_apellidos_nombres, $maes_nombre_corto, $maes_cargo_actual, $maes_estado, $maes_fecha_ingreso, $maes_fecha_cese, $maes_email, $maes_direccion, $maes_distrito);
    break;
 
    case 'editar_maestro':
       $maestro_id             = $_POST['maestro_id'];
+      $maes_nombre_corto      = strtoupper($_POST['maes_nombre_corto']);
       $maes_apellidos_nombres = strtoupper($_POST['maes_apellidos_nombres']);
       $maes_cargo_actual      = $_POST['maes_cargo_actual'];
       $maes_estado            = $_POST['maes_estado'];
@@ -104,11 +115,10 @@ switch ($Accion)
       $maes_email             = $_POST['maes_email'];
       $maes_direccion         = strtoupper($_POST['maes_direccion']);
       $maes_distrito          = $_POST['maes_distrito'];
-      $maes_perfil_evaluacion = $_POST['maes_perfil_evaluacion'];
       
       MModel($modulo,'crud');
       $instancia_ajax= new crud();
-      $respuesta = $instancia_ajax->editar_maestro($maestro_id,$maes_apellidos_nombres,$maes_cargo_actual,$maes_estado,$maes_fecha_ingreso,$maes_fecha_cese,$maes_email,$maes_direccion,$maes_distrito,$maes_perfil_evaluacion);
+      $respuesta = $instancia_ajax->editar_maestro($maestro_id, $maes_apellidos_nombres, $maes_nombre_corto, $maes_cargo_actual, $maes_estado, $maes_fecha_ingreso, $maes_fecha_cese, $maes_email, $maes_direccion, $maes_distrito);
    break;
 
    case 'borrar_maestro':

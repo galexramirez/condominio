@@ -21,5 +21,14 @@ class logico
 		}
 		echo $html;
 	}
-	
+
+	public function buscar_data_bd($tabla_bd, $campo_bd, $data_buscar)
+    {
+        MModel($this->modulo,'crud');
+        $instancia_ajax = new crud();
+        $respuesta = $instancia_ajax->buscar_data_bd($tabla_bd, $campo_bd, $data_buscar);
+
+        print json_encode($respuesta, JSON_UNESCAPED_UNICODE);
+    }
+
 }

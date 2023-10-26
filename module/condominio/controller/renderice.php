@@ -16,8 +16,6 @@
     $Respuesta = $Instancia2->ValidaModulo($NombreDeModulo);     	    
     if ($Respuesta == "Falso")
         { session_destroy();  header('Location: /inicio'); }
-    $Respuesta=$Instancia2->PermisoAlModulo($NombreDeModulo);
-
 
  // 3.0 RECURSOS PARA EL MODULO     
     $InsertHead="   <link rel='stylesheet' href='module/condominio/view/local_view.css' type='text/css' media='all'>

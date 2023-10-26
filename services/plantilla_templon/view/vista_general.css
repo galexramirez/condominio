@@ -9,7 +9,7 @@ body {
   position: relative;
   background: #f2f3f5;
   font-family: 'Open Sans', sans-serif;
-  zoom: 100%;
+  zoom: 70%;
 }
 
 
@@ -231,4 +231,11 @@ body {
   background: #e6e7e9;
   color: #2A4C38;
   /*font-weight: bold; */
+}
+
+.modal-backdrop.show{
+  opacity: .4 !important;
+  width: 100% !important;
+  height: 100% !important;
+  fill: alpha(opacity=40);
 }

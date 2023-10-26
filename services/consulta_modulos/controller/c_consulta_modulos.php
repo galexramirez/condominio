@@ -50,20 +50,6 @@ class c_consulta_modulos
         return $Resultado;
         }
    
-   // Recibe Nombre Modulo, Identifica el nivel de permiso del usuario en el modulo, true/false  
-   function PermisoAlModulo($NombreDeModulo)
-        {
-        $Resultado="";
-        foreach ($this->datos as $row) 
-            {
-            if($row['mod_nombre']==$NombreDeModulo)    
-                {
-                $Resultado=$row['per_nivel'];
-                }
-            }
-        return $Resultado;
-        }
-
    // Recibe "", Crea Lista los modulos que tiene activo el usuario, Array  
    function ListaModulosDelUsuario()
         {

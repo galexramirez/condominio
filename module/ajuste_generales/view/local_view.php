@@ -279,19 +279,39 @@
 			      		    	        </div>    
 			      		        	</div>
 				      		        <div class="row"> 
-				      		            <div class="col-lg-6">
+				      		            <div class="col-lg-12">
 					  		                <div class="form-group">
 							                   	<label for="mod_nombre_vista" class="col-form-label form-control-sm">NOMBRE DE VISTA</label>
 							                   	<input type="text" class="form-control form-control-sm" id="mod_nombre_vista">
 							               	</div>               
 						    	       </div>
-						        	       	<div class="col-lg-6">
-						            	      	<div class="form-group">
+				      		        </div>
+				      		        <div class="row"> 
+				      		            <div class="col-lg-6">
+					  		                <div class="form-group">
+							                   	<label for="mod_tipo" class="col-form-label form-control-sm">TIPO</label>
+							                   	<select type="text" class="form-control form-control-sm" id="mod_tipo">
+												   <option value="Modulo">Modulo</option>
+        											<option value="Plegable">Plegable</option>
+												</select>
+							               	</div>               
+						    	       </div>
+									   <div class="col-lg-6">
+					  		                <div class="form-group">
+							                   	<label for="mod_plegable" class="col-form-label form-control-sm">MENU PLEGABLE</label>
+							                   	<input type="text" class="form-control form-control-sm" id="mod_plegable" maxlength="25">
+							               	</div>               
+						    	       </div>
+									</div>
+									<div class="row"> 
+						        	    <div class="col-lg-12">
+						            	    <div class="form-group">
 						                	   	<label for="mod_icono" class="col-form-label form-control-sm">LINK DE ICONO</label>
 						                   		<input type="text" class="form-control form-control-sm" id="mod_icono">
 					  		                </div>
 				      		            </div>  
 				      		        </div>
+
 			    	  		    </div>
 			      			    <div class="modal-footer">
 			      			        <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
@@ -338,26 +358,25 @@
 			      		            	</div>
 				      		            <div class="col-lg-6">
 					  		                <div class="form-group">
-							                	<label for="per_usuario_id" class="col-form-label form-control-sm">USUARIO ID</label>
-												<select class="form-control form-control-sm" id="per_usuario_id">
-												</select>
+							                	<label for="per_usuario_id" class="col-form-label form-control-sm">DNI</label>
+												<input type="text" class="form-control form-control-sm" id="per_usuario_id" maxlength="8">
 				  			                </div> 
 			      			            </div>    
 			      		    	    </div>
 			      		        	<div class="row"> 
-			      		            	<div class="col-lg-6">
+										<div class="col-lg-6">
+					  		                <div class="form-group">
+							                	<label for="per_nombre_corto" class="col-form-label form-control-sm">USUARIO</label>
+												<input type="text" readonly class="form-control form-control-sm" id="per_nombre_corto">
+				  			                </div> 
+			      			            </div>    
+										<div class="col-lg-6">
 				  		                	<div class="form-group">
-						                   		<label for="per_modulo_id" class="col-form-label form-control-sm">MODULO ID</label>
-											   	<select class="form-control form-control-sm" id="per_modulo_id">
+						                   		<label for="per_modulo_nombre" class="col-form-label form-control-sm">MODULO</label>
+											   	<select class="form-control form-control-sm" id="per_modulo_nombre">
 												</select>
 						               		</div>               
 						           		</div>
-						               	<div class="col-lg-6">
-						                  	<div class="form-group">
-						                   		<label for="per_nivel" class="col-form-label form-control-sm">NIVEL DE ACCESO</label>
-						                   		<input type="text" class="form-control form-control-sm" id="per_nivel">
-				  		                	</div>
-			      		            	</div>  
 			      		        	</div>
 			      		        	<div class="row"> 
 			      		            	<div class="col-lg-6">

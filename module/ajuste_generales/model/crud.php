@@ -120,9 +120,9 @@ class crud
         $this->conexion=null;
    	}   
 		 
-	function crear_modulo($mod_nombre,$mod_nombre_vista,$mod_icono)
+	function crear_modulo($mod_nombre, $mod_nombre_vista, $mod_icono, $mod_tipo, $mod_plegable)
 	{
-		$consulta = "INSERT INTO `glo_modulo`(`mod_nombre`, `mod_nombre_vista`, `mod_icono`) VALUES ('$mod_nombre','$mod_nombre_vista','$mod_icono')";
+		$consulta = "INSERT INTO `glo_modulo`(`mod_nombre`, `mod_nombre_vista`, `mod_icono`, `mod_tipo`, `mod_plegable`) VALUES ('$mod_nombre','$mod_nombre_vista','$mod_icono', '$mod_tipo', '$mod_plegable')";
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();   
 		
@@ -135,9 +135,9 @@ class crud
         $this->conexion=null;	
 	}  	
 	
-	function editar_modulo($modulo_id,$mod_nombre,$mod_nombre_vista,$mod_icono)
+	function editar_modulo($modulo_id, $mod_nombre, $mod_nombre_vista, $mod_icono, $mod_tipo, $mod_plegable)
 	{
-		$consulta = "UPDATE `glo_modulo` SET `mod_nombre`='$mod_nombre',`mod_nombre_vista`='$mod_nombre_vista',`mod_icono`='$mod_icono' WHERE `modulo_id`='$modulo_id'";		
+		$consulta = "UPDATE `glo_modulo` SET `mod_nombre`='$mod_nombre',`mod_nombre_vista`='$mod_nombre_vista',`mod_icono`='$mod_icono', `mod_tipo`='$mod_tipo', `mod_plegable`='$mod_plegable' WHERE `modulo_id`='$modulo_id'";
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();   
 		
@@ -161,7 +161,18 @@ class crud
 
 	function leer_permisos()
 	{
-        $consulta = "SELECT `permiso_id`, (SELECT `glo_roles`.`roles_nombre_corto` FROM `glo_roles` WHERE `per_usuario_id` = `glo_roles`.`roles_dni` LIMIT 1) AS `per_usuario_id`, `glo_modulo`.`mod_nombre` AS `per_modulo_id`, `per_nivel`, `per_modulo_inicio`  FROM `glo_permisos` LEFT JOIN `glo_modulo` ON `per_modulo_id` = `glo_modulo`.`modulo_id`";
+        $consulta = "SELECT 
+						`permiso_id`,
+						`per_usuario_id`,
+						`maes_nombre_corto` AS `per_nombre_corto`, 
+						`glo_modulo`.`mod_nombre` AS `per_modulo_nombre`, 
+						`per_modulo_inicio`  
+					FROM `glo_permisos` 
+					LEFT JOIN `glo_modulo` 
+					ON `per_modulo_id` = `glo_modulo`.`modulo_id`
+					LEFT JOIN `glo_maestro`
+					ON `per_usuario_id` = `glo_maestro`.`maestro_id`";
+
         $resultado = $this->conexion->prepare($consulta);
         $resultado->execute();        
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -170,30 +181,19 @@ class crud
         $this->conexion=null;
    	}   
 		 
-	function crear_permisos($per_usuario_id,$per_modulo_id,$per_nivel,$per_modulo_inicio)
+	function crear_permisos($per_usuario_id, $per_modulo_nombre, $per_modulo_inicio)
 	{
-		$per_usuario_id_1 = "";
-		$per_modulo_id_1 = "";
+		$per_modulo_id = "";
 
-		$consulta1 = "SELECT DISTINCT `glo_roles`.`roles_dni` FROM `glo_roles` WHERE `glo_roles`.`roles_nombre_corto` = '$per_usuario_id'";
+		$consulta1 = "SELECT `glo_modulo`.`modulo_id` FROM `glo_modulo` WHERE `glo_modulo`.`mod_nombre` = '$per_modulo_nombre'";
 		$resultado1 = $this->conexion->prepare($consulta1);
 		$resultado1->execute();
 		
-		foreach ($resultado1 as $row)
-		{
-			$per_usuario_id_1 = $row['roles_dni'];
+		foreach ($resultado1 as $row){
+			$per_modulo_id = $row['modulo_id'];
 		}
 
-		$consulta2 = "SELECT `glo_modulo`.`modulo_id` FROM `glo_modulo` WHERE `glo_modulo`.`mod_nombre` = '$per_modulo_id'";
-		$resultado2 = $this->conexion->prepare($consulta2);
-		$resultado2->execute();
-		
-		foreach ($resultado2 as $row)
-		{
-			$per_modulo_id_1 = $row['modulo_id'];
-		}
-
-		$consulta = "INSERT INTO `glo_permisos`(`per_usuario_id`, `per_modulo_id`, `per_nivel`, `per_modulo_inicio`) VALUES ('$per_usuario_id_1','$per_modulo_id_1','$per_nivel', '$per_modulo_inicio')";
+		$consulta = "INSERT INTO `glo_permisos`(`per_usuario_id`, `per_modulo_id`, `per_modulo_inicio`) VALUES ('$per_usuario_id', '$per_modulo_id', '$per_modulo_inicio')";
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();   
 		
@@ -206,30 +206,20 @@ class crud
         $this->conexion=null;	
 	}  	
 	
-	function editar_permisos($permiso_id,$per_usuario_id,$per_modulo_id,$per_nivel,$per_modulo_inicio)
+	function editar_permisos($permiso_id, $per_usuario_id, $per_modulo_nombre, $per_modulo_inicio)
 	{
-		$per_usuario_id_1 = "";
-		$per_modulo_id_1 = "";
+		$per_modulo_id = "";
 
-		$consulta1 = "SELECT DISTINCT `glo_roles`.`roles_dni` FROM `glo_roles` WHERE `glo_roles`.`roles_nombre_corto` = '$per_usuario_id'";
-		$resultado1 = $this->conexion->prepare($consulta1);
-		$resultado1->execute();
-		
-		foreach ($resultado1 as $row)
-		{
-			$per_usuario_id_1 = $row['roles_dni'];
-		}
-
-		$consulta2 = "SELECT `glo_modulo`.`modulo_id` FROM `glo_modulo` WHERE `glo_modulo`.`mod_nombre` = '$per_modulo_id'";
+		$consulta2 = "SELECT `glo_modulo`.`modulo_id` FROM `glo_modulo` WHERE `glo_modulo`.`mod_nombre` = '$per_modulo_nombre'";
 		$resultado2 = $this->conexion->prepare($consulta2);
 		$resultado2->execute();
 		
 		foreach ($resultado2 as $row)
 		{
-			$per_modulo_id_1 = $row['modulo_id'];
+			$per_modulo_id = $row['modulo_id'];
 		}
 
-		$consulta = "UPDATE `glo_permisos` SET `per_usuario_id`='$per_usuario_id_1',`per_modulo_id`='$per_modulo_id_1',`per_nivel`='$per_nivel',`per_modulo_inicio`='$per_modulo_inicio' WHERE `permiso_id`='$permiso_id'";		
+		$consulta = "UPDATE `glo_permisos` SET `per_usuario_id`='$per_usuario_id', `per_modulo_id`='$per_modulo_id', `per_modulo_inicio`='$per_modulo_inicio' WHERE `permiso_id`='$permiso_id'";		
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();   
 		
@@ -467,7 +457,7 @@ class crud
         $this->conexion=null;	
 	}  		
 
-	function buscar_data_bd($tabla_bd,$campo_bd,$data_buscar)
+	function buscar_data_bd($tabla_bd, $campo_bd, $data_buscar)
 	{
 		$consulta = "SELECT * FROM `$tabla_bd` WHERE `$campo_bd` = '$data_buscar'";
 		$resultado = $this->conexion->prepare($consulta);
@@ -533,28 +523,7 @@ class crud
 
 	function validar_permisos($per_usuario_id, $per_modulo_id)
 	{
-		$per_usuario_id_1 = "";
-		$per_modulo_id_1 = "";
-
-		$consulta1 = "SELECT DISTINCT `glo_roles`.`roles_dni` FROM `glo_roles` WHERE `glo_roles`.`roles_nombre_corto` = '$per_usuario_id'";
-		$resultado1 = $this->conexion->prepare($consulta1);
-		$resultado1->execute();
-		
-		foreach ($resultado1 as $row)
-		{
-			$per_usuario_id_1 = $row['roles_dni'];
-		}
-
-		$consulta2 = "SELECT `glo_modulo`.`modulo_id` FROM `glo_modulo` WHERE `glo_modulo`.`mod_nombre` = '$per_modulo_id'";
-		$resultado2 = $this->conexion->prepare($consulta2);
-		$resultado2->execute();
-		
-		foreach ($resultado2 as $row)
-		{
-			$per_modulo_id_1 = $row['modulo_id'];
-		}
-
-		$consulta= "SELECT * FROM `glo_permisos` WHERE `per_usuario_id`='$per_usuario_id_1' AND `per_modulo_id`='$per_modulo_id_1'";
+		$consulta= "SELECT * FROM `glo_permisos` WHERE `per_usuario_id`='$per_usuario_id' AND `per_modulo_id`='$per_modulo_id'";
         $resultado = $this->conexion->prepare($consulta);
         $resultado->execute();
 		$valida = $resultado->rowCount();
@@ -564,7 +533,7 @@ class crud
 		}else{
 			return true;
 		}
-        $this->conexion=null;	
+        $this->conexion=null;
 	}
 	
 	function select_usuario()

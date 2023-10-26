@@ -16,7 +16,7 @@
     $respuesta = $instancia2->ValidaModulo($NombreDeModulo);     	    
     if ($respuesta =="Falso")
         { session_destroy();  header('Location: /inicio'); }
-    $respuesta = $instancia2->PermisoAlModulo($NombreDeModulo);
+    //$respuesta = $instancia2->PermisoAlModulo($NombreDeModulo);
 
 
  // 3.0 RECURSOS PARA EL MODULO     
