@@ -1,3 +1,8 @@
+th{
+    font-size: 9px;
+    font-weight: 500;
+}
+
 table.dataTable thead {
     background: #2A4C38;
     color:white;
@@ -64,6 +69,16 @@ div.dt-buttons {
     color:white;
 }
 
+#tabla_tc_condominio_usuario thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_tc_condominio_sistema thead {
+    background: #2A4C38;
+    color:white;
+}
+
 #tabla_condominio{
     font-size: 12px;
 }
@@ -89,6 +104,14 @@ div.dt-buttons {
 }
 
 #tabla_miembro{
+    font-size: 12px;
+}
+
+#tabla_tc_condominio_usuario{
+    font-size: 12px;
+}
+
+#tabla_tc_condominio_sistema{
     font-size: 12px;
 }
 

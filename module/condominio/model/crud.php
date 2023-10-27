@@ -17,9 +17,9 @@ class crud
 		$this->conexion=$Instancia->Conectar(); 	
 	}
 
-	function select_categoria($tabla,$tc_ficha,$tc_categoria1)
+	function select_categoria($tabla,$tc_categoria1,$tc_categoria2)
 	{
-		$consulta="SELECT `$tabla`.`tc_categoria2` AS `Detalle` FROM `$tabla` WHERE `$tabla`.`tc_ficha` = '$tc_ficha' AND `$tabla`.`tc_categoria1`= '$tc_categoria1' ORDER BY`Detalle` ASC";
+		$consulta="SELECT `$tabla`.`tc_categoria3` AS `Detalle` FROM `$tabla` WHERE `$tabla`.`tc_categoria1` = '$tc_categoria1' AND `$tabla`.`tc_categoria2`= '$tc_categoria2' ORDER BY`Detalle` ASC";
 
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();        
@@ -83,12 +83,12 @@ class crud
 			$cacces_modulo_id = $row['modulo_id'];
 		}
 
-		$consulta = "SELECT * FROM `glo_objetos` WHERE `glo_objetos`.`obj_nombre_objeto` = '$cacces_nombre_objeto'";
+		$consulta = "SELECT * FROM `glo_objeto` WHERE `glo_objeto`.`obj_nombre_objeto` = '$cacces_nombre_objeto'";
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();
 		$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 		foreach($data as $row){
-			$cacces_objeto_id = $row['objetos_id'];
+			$cacces_objeto_id = $row['objeto_id'];
 		}
 
 		$consulta = "SELECT * FROM `glo_control_acceso` WHERE `cacces_perfil` = '$cacces_perfil' AND `cacces_modulo_id` = '$cacces_modulo_id' AND `cacces_objeto_id` = '$cacces_objeto_id'";
@@ -579,6 +579,109 @@ class crud
         $resultado->execute();        
 
 		$this->conexion=null;
+	}
+
+	function leer_tc_condominio_usuario()
+	{
+		$tc_variable = 'USUARIO';
+        $consulta = "SELECT * FROM `tc_condominio` WHERE `tc_variable`='$tc_variable'";
+
+        $resultado = $this->conexion->prepare($consulta);
+        $resultado->execute();        
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+
+        print json_encode($data, JSON_UNESCAPED_UNICODE);
+        $this->conexion=null;
+   	}   
+
+	function crear_tc_condominio_usuario($tc_condominio_id, $tc_categoria1, $tc_categoria2, $tc_categoria3)
+	{
+	   	$tc_variable = 'USUARIO';
+		$consulta = "INSERT INTO `tc_condominio`(`tc_variable`, `tc_categoria1`, `tc_categoria2`, `tc_categoria3`) VALUES ('$tc_variable', '$tc_categoria1','$tc_categoria2','$tc_categoria3')";
+	   	$resultado = $this->conexion->prepare($consulta);
+	   	$resultado->execute();   
+
+	   	$consulta = "SELECT * FROM `tc_condominio` WHERE `tc_variable`='$tc_variable'";
+	   	$resultado = $this->conexion->prepare($consulta);
+	   	$resultado->execute();        
+	   	$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+	   	print json_encode($data, JSON_UNESCAPED_UNICODE);
+	   	
+		$this->conexion=null;	
+	}  	
+	
+	function editar_tc_condominio_usuario($tc_condominio_id, $tc_categoria1, $tc_categoria2, $tc_categoria3)
+	{
+	   $consulta = "UPDATE `tc_condominio` SET `tc_categoria1`='$tc_categoria1',`tc_categoria2`='$tc_categoria2',`tc_categoria3`='$tc_categoria3' WHERE`tc_condominio_id`='$tc_condominio_id'";		
+	   $resultado = $this->conexion->prepare($consulta);
+	   $resultado->execute();   
+
+	   $consulta= "SELECT * FROM `tc_condominio` WHERE `tc_condominio_id` ='$tc_condominio_id'";
+	   $resultado = $this->conexion->prepare($consulta);
+	   $resultado->execute();        
+	   $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+	   print json_encode($data, JSON_UNESCAPED_UNICODE);
+	   $this->conexion=null;	
+	}  		
+	
+	function borrar_tc_condominio_usuario($tc_condominio_id)
+	{
+		$consulta = "DELETE FROM `tc_condominio` WHERE `tc_condominio_id`='$tc_condominio_id'";		
+		$resultado = $this->conexion->prepare($consulta);
+		$resultado->execute();   
+		$this->conexion=null;	
+	}
+
+	function leer_tc_condominio_sistema()
+	{
+        $tc_variable = 'SISTEMA';
+		$consulta="SELECT * FROM `tc_condominio` WHERE `tc_variable`='$tc_variable'";
+
+        $resultado = $this->conexion->prepare($consulta);
+        $resultado->execute();        
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+
+        print json_encode($data, JSON_UNESCAPED_UNICODE);
+        $this->conexion=null;
+   	}   
+
+	function crear_tc_condominio_sistema($tc_condominio_id, $tc_categoria1, $tc_categoria2, $tc_categoria3)
+	{
+		$tc_variable = 'SISTEMA';
+	   	$consulta = "INSERT INTO `tc_condominio`(`tc_variable`, `tc_categoria1`, `tc_categoria2`, `tc_categoria3`) VALUES ('$tc_variable', '$tc_categoria1','$tc_categoria2','$tc_categoria3')";
+	   	$resultado = $this->conexion->prepare($consulta);
+	   	$resultado->execute();   
+
+	   	$consulta = "SELECT * FROM `tc_condominio` WHERE `tc_variable`='$tc_variable'";
+	   	$resultado = $this->conexion->prepare($consulta);
+	   	$resultado->execute();        
+	   	$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+	   	print json_encode($data, JSON_UNESCAPED_UNICODE);
+	   	
+		$this->conexion=null;	
+	}  	
+	
+	function editar_tc_condominio_sistema($tc_condominio_id, $tc_categoria1, $tc_categoria2, $tc_categoria3)
+	{
+	   $consulta = "UPDATE `tc_condominio` SET `tc_categoria1`='$tc_categoria1',`tc_categoria2`='$tc_categoria2',`tc_categoria3`='$tc_categoria3' WHERE`tc_condominio_id`='$tc_condominio_id'";	
+
+	   $resultado = $this->conexion->prepare($consulta);
+	   $resultado->execute();   
+
+	   $consulta= "SELECT * FROM `tc_condominio` WHERE `tc_condominio_id` ='$tc_condominio_id'";
+	   $resultado = $this->conexion->prepare($consulta);
+	   $resultado->execute();        
+	   $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+	   print json_encode($data, JSON_UNESCAPED_UNICODE);
+	   $this->conexion=null;	
+	}  		
+	
+	function borrar_tc_condominio_sistema($tc_condominio_id)
+	{
+		$consulta = "DELETE FROM `tc_condominio` WHERE `tc_condominio_id`='$tc_condominio_id'";		
+		$resultado = $this->conexion->prepare($consulta);
+		$resultado->execute();   
+		$this->conexion=null;	
 	}
 
 }

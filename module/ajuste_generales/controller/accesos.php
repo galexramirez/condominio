@@ -50,8 +50,8 @@ class accesos
 										<tr>
 											<th>ID</th>
 											<th>MODULO</th>
-											<th>OBJETOS</th>
-											<th>DESCRIPCION</th>
+											<th>OBJETO</th>
+											<th>DESCRIPCION_DEL_OBJETO</th>
 											<th>ACCIONES</th>
 										</tr>
 									</thead>

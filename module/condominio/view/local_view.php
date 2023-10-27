@@ -15,7 +15,7 @@
 
 	<!-- Contenido para el Modulo -->
 	<div class="my-contenidoModulo container-fluid pl-0 pr-0 ml-0 mr-0">
-
+	
 		<nav>
 	 		<div class="nav nav-tabs" id="nav-tab-condominio" role="tablist">
 				<!-- creacion_tab -->
@@ -669,6 +669,158 @@
 				<!-- FIN MODAL CRUD MIEMBRO -->
 			</div>
 
+			<!-- TAB AJUSTES CONDOMINIO -->
+			<div class="tab-pane fade" id="nav-ajustes_condominio" role="tabpanel" aria-labelledby="nav-ajustes_condominio-tab">
+				<h5 class="pt-3 pl-3">Variables</h5>
+				
+				<nav>
+	 				<div class="nav nav-tabs" id="nav-tab-ajustes_condominio" role="tablist">
+
+					</div>
+				</nav>
+				
+				<div class="tab-content" id="nav-tabContent-ajustes_condominio">
+
+					<!------------------------------------------------------------------------------->
+					<!-- TAB AJUSTE VARIABLE DE USUARIO DE CONDOMINIO ------------------------------->
+					<!------------------------------------------------------------------------------->
+					<div class="tab-pane fade show active" id="nav-ajustes_condominio_usuario" role="tabpanel" aria-labelledby="nav-ajustes_condominio_usuario-tab">
+
+						<section class="container-fluid py-3">
+							<button id="btn_nuevo_tc_condominio_usuario" type="button" class="btn btn-secondary btn-sm btn_nuevo_tc_condominio_usuario" data-toggle="modal">+ Nuevo</button>  
+						</section>
+						<div class="row p-3">
+							<div class="col-auto m-0">
+								<div class="table-responsive" id="div_tabla_tc_condominio_usuario">
+
+								</div>
+							</div>
+						</div>
+
+						<div class="row modal fade" id="modal_crud_tc_condominio_usuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel"></h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<form id="form_tc_condominio_usuario">
+						  				<div class="modal-body">
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group">
+												  		<label for="tc_condominio_id_usuario" class="col-form-label form-control-sm">ID</label>
+												   		<input type="text" readonly class="form-control form-control-sm" id="tc_condominio_id_usuario">
+												 	</div>
+											 	</div>
+											 	<div class="col-lg-6">
+											  		<div class="form-group">
+														<label for="cond_cat1_usuario" class="col-form-label form-control-sm">CATEGORIA 1</label>
+												   		<input type="text" class="form-control form-control-sm text-uppercase" id="cond_cat1_usuario" maxlength="45">
+													</div> 
+											 	</div>    
+											</div>
+							  				<div class="row"> 
+												<div class="col-lg-6">
+											  		<div class="form-group">
+														<label for="cond_cat2_usuario" class="col-form-label form-control-sm">CATEGORIA 2</label>
+														<input type="text" class="form-control form-control-sm text-uppercase" id="cond_cat2_usuario" maxlength="45">
+													</div> 
+								  				</div>
+											</div>
+											<div class="row"> 
+								  				<div class="col-lg-12">
+											  		<div class="form-group">
+														<label for="cond_cat3_usuario" class="col-form-label form-control-sm">CATEGORIA 3</label>
+												  		<textarea class="form-control z-depth-1 text-uppercase" id="cond_cat3_usuario" rows="7" placeholder="escribe algo aqui..." maxlength="250"></textarea>
+													</div>               
+								   				</div>
+							  				</div>
+										</div>
+						  				<div class="modal-footer">
+							  				<button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
+							  				<button type="submit" id="btn_guardar_tc_condominio_usuario" class="btn btn-dark btn-sm btn_guardar_tc_condominio_usuario">Guardar</button>
+						  				</div>
+									</form>    
+								</div>
+							</div>
+						</div>  
+					
+					</div>
+					
+					<!------------------------------------------------------------------------------->
+					<!-- TAB AJUSTE VARIABLE DE SISTEMA DE CONSOMINIO ------------------------------->
+					<!------------------------------------------------------------------------------->
+					<div class="tab-pane fade" id="nav-ajustes_condominio_sistema" role="tabpanel" aria-labelledby="nav-ajustes_condominio_sistema-tab">
+
+						<section class="container-fluid py-3">
+							<button id="btn_nuevo_tc_condominio_sistema" type="button" class="btn btn-secondary btn-sm btn_nuevo_tc_condominio_sistema" data-toggle="modal">+ Nuevo</button>  
+						</section>
+						<div class="row p-3">
+							<div class="col-auto m-0">
+								<div class="table-responsive" id="div_tabla_tc_condominio_sistema">
+
+								</div>
+							</div>
+						</div>
+
+						<div class="row modal fade" id="modal_crud_tc_condominio_sistema" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel"></h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<form id="form_tc_condominio_sistema">
+						  				<div class="modal-body">
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group">
+												  		<label for="tc_condominio_id_sistema" class="col-form-label form-control-sm">ID</label>
+												   		<input type="text" readonly class="form-control form-control-sm" id="tc_condominio_id_sistema">
+												 	</div>
+											 	</div>
+											 	<div class="col-lg-6">
+											  		<div class="form-group">
+														<label for="cond_cat1_sistema" class="col-form-label form-control-sm">CATEGORIA 1</label>
+												   		<input type="text" class="form-control form-control-sm text-uppercase" id="cond_cat1_sistema" maxlength="45">
+													</div> 
+											 	</div>    
+											</div>
+							  				<div class="row"> 
+												<div class="col-lg-6">
+											  		<div class="form-group">
+														<label for="cond_cat2_sistema" class="col-form-label form-control-sm">CATEGORIA 2</label>
+														<input type="text" class="form-control form-control-sm text-uppercase" id="cond_cat2_sistema" maxlength="45">
+													</div> 
+								  				</div>
+											</div>
+											<div class="row"> 
+								  				<div class="col-lg-12">
+											  		<div class="form-group">
+														<label for="cond_cat3_sistema" class="col-form-label form-control-sm">CATEGORIA 3</label>
+												  		<textarea class="form-control z-depth-1 text-uppercase" id="cond_cat3_sistema" rows="7" placeholder="escribe algo aqui..." maxlength="250"></textarea>
+													</div>               
+								   				</div>
+							  				</div>
+										</div>
+						  				<div class="modal-footer">
+							  				<button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
+							  				<button type="submit" id="btn_guardar_tc_condominio_sistema" class="btn btn-dark btn-sm btn_guardar_tc_condominio_sistema">Guardar</button>
+						  				</div>
+									</form>    
+								</div>
+							</div>
+						</div>  
+
+					</div>
+				</div>
+			</div>
 		</div>
+	
 	</div>
 </div>

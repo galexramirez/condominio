@@ -40,6 +40,9 @@ $(document).ready(function() {
   div_tab = f_creacion_tab("nav-tab-condominio","");
   $("#nav-tab-condominio").html(div_tab);
 
+  div_tab = f_creacion_tab("nav-tab-ajustes_condominio","");
+  $("#nav-tab-ajustes_condominio").html(div_tab);
+
   $( "#tabs" ).tabs();
 });
 ///::::::::::::::::::::::::::TERMINO JS DOM INICIO ::::::::::::::::::::::::::::::::::::::::///

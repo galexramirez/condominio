@@ -44,7 +44,9 @@
                     <script src='module/condominio/view/local_view_departamento.js' type='text/javascript'></script>
                     <script src='module/condominio/view/local_view_residente.js' type='text/javascript'></script>
                     <script src='module/condominio/view/local_view_directiva.js' type='text/javascript'></script>
-                    <script src='module/condominio/view/local_view_miembro.js' type='text/javascript'></script>";
+                    <script src='module/condominio/view/local_view_miembro.js' type='text/javascript'></script>
+                    <script src='module/condominio/view/local_view_tc_condominio_usuario.js' type='text/javascript'></script>
+                    <script src='module/condominio/view/local_view_tc_condominio_sistema.js' type='text/javascript'></script>";
                     
 // 4.0 CONTRUCCION DE LA VISTA
 

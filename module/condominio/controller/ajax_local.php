@@ -62,12 +62,12 @@ switch ($Accion)
 
    case 'select_categoria':
       $tabla         = $_POST['tabla'];
-      $tc_ficha      = $_POST['tc_ficha'];
-      $tc_categoria1 = $_POST['tc_categoria1'];
+      $tc_categoria1      = $_POST['tc_categoria1'];
+      $tc_categoria2 = $_POST['tc_categoria2'];
 
       MController($modulo,'logico');
       $instancia_ajax = new logico();
-      $respuesta = $instancia_ajax->select_categoria($tabla, $tc_ficha, $tc_categoria1);
+      $respuesta = $instancia_ajax->select_categoria($tabla, $tc_categoria1, $tc_categoria2);
    break;
 
    case 'buscar_data_bd':
@@ -392,6 +392,78 @@ switch ($Accion)
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
       $respuesta = $instancia_ajax->leer_miembro($directiva_id);
+   break;
+
+   case 'leer_tc_condominio_usuario':
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
+      $respuesta     = $instancia_ajax->leer_tc_condominio_usuario();
+   break;
+
+   case 'crear_tc_condominio_usuario':
+      $tc_condominio_id = $_POST['tc_condominio_id'];
+      $tc_categoria1    = strtoupper($_POST['tc_categoria1']);
+      $tc_categoria2    = strtoupper($_POST['tc_categoria2']);
+      $tc_categoria3    = strtoupper($_POST['tc_categoria3']);
+
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
+      $respuesta     = $instancia_ajax->crear_tc_condominio_usuario($tc_condominio_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
+   break;
+
+   case 'editar_tc_condominio_usuario':
+      $tc_condominio_id = $_POST['tc_condominio_id'];
+      $tc_categoria1    = strtoupper($_POST['tc_categoria1']);
+      $tc_categoria2    = strtoupper($_POST['tc_categoria2']);
+      $tc_categoria3    = strtoupper($_POST['tc_categoria3']);
+
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
+      $respuesta     = $instancia_ajax->editar_tc_condominio_usuario($tc_condominio_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
+   break;
+
+   case 'borrar_tc_condominio_usuario':
+      $tc_condominio_id=$_POST['tc_condominio_id'];
+
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
+      $respuesta     = $instancia_ajax->borrar_tc_condominio_usuario($tc_condominio_id);
+   break;
+
+   case 'leer_tc_condominio_sistema':
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
+      $respuesta     = $instancia_ajax->leer_tc_condominio_sistema();
+   break;
+
+   case 'crear_tc_condominio_sistema':
+      $tc_condominio_id = $_POST['tc_condominio_id'];
+      $tc_categoria1    = strtoupper($_POST['tc_categoria1']);
+      $tc_categoria2    = strtoupper($_POST['tc_categoria2']);
+      $tc_categoria3    = strtoupper($_POST['tc_categoria3']);
+
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
+      $respuesta     = $instancia_ajax->crear_tc_condominio_sistema($tc_condominio_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
+   break;
+
+   case 'editar_tc_condominio_sistema':
+      $tc_condominio_id = $_POST['tc_condominio_id'];
+      $tc_categoria1    = strtoupper($_POST['tc_categoria1']);
+      $tc_categoria2    = strtoupper($_POST['tc_categoria2']);
+      $tc_categoria3    = strtoupper($_POST['tc_categoria3']);
+
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
+      $respuesta     = $instancia_ajax->editar_tc_condominio_sistema($tc_condominio_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
+   break;
+
+   case 'borrar_tc_condominio_sistema':
+      $tc_condominio_id=$_POST['tc_condominio_id'];
+
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
+      $respuesta     = $instancia_ajax->borrar_tc_condominio_sistema($tc_condominio_id);
    break;
 
    default: header('Location: /inicio');
