@@ -73,7 +73,7 @@ class crud
 		$rpta_permisos 		= "";
 		$cacces_modulo_id 	= "";
 		$cacces_objeto_id 	= "";
-		$cacces_perfil 		= $_SESSION['USU_PERFIL'];
+		$cacces_perfil 		= $_SESSION['USUA_PERFIL'];
 
 		$consulta = "SELECT * FROM `glo_modulo` WHERE `glo_modulo`.`mod_nombre` = '$cacces_nombre_modulo'";
 		$resultado = $this->conexion->prepare($consulta);

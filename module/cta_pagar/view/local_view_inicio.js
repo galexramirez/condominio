@@ -49,36 +49,20 @@ $(document).ready(function() {
 ///::::::::::::::::::::::::::TERMINO JS DOM INICIO ::::::::::::::::::::::::::::::::::::::::///
 
 ///:::::::::::::::::::::::::::::: FUNCIONES DE INICIO :::::::::::::::::::::::::::::::::::::///
-function f_select_categoria(p_tabla, p_ficha, p_categoria1){
+function f_select_categoria(p_tabla, p_variable, p_categoria1, p_categoria2){
   let rpta_select_categoria = "";
   Accion = 'select_categoria';
   $.ajax({
     url     : "ajax.php",
     type    : "POST",
-    datatype:"json",
+    datatype: "json",
     async   : false,
-    data    : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, tabla:p_tabla, tc_ficha:p_ficha, tc_categoria1:p_categoria1},    
+    data    : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, tabla:p_tabla, tc_variable:p_variable, tc_categoria1:p_categoria1, tc_categoria2:p_categoria2},    
     success : function(data){
       rpta_select_categoria = data;
     }
   });
   return rpta_select_categoria;
-}
-
-function f_select_nombre_corto(p_roles_perfil){
-  let select_nombre_corto = "";
-  Accion = 'select_nombre_corto';
-  $.ajax({
-    url     : "ajax.php",
-    type    : "POST",
-    datatype: "json",
-    async   : false,
-    data    : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, roles_perfil:p_roles_perfil},    
-    success : function(data){
-      select_nombre_corto = data;
-    }
-  });
-  return select_nombre_corto;
 }
 
 function f_document_root(){
@@ -89,7 +73,7 @@ function f_document_root(){
     type      : "POST",
     datatype  : "json",
     async     : false,
-    data      : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion},    
+    data      : { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion },
     success   : function(data){
       rpta_mi_carpeta = data;
     }
@@ -106,7 +90,7 @@ function f_calculo_fecha(p_inicio, p_calculo){
     type    : "POST",
     datatype: "json",
     async   : false,
-    data    : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, inicio:p_inicio, calculo:p_calculo},    
+    data    : { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, inicio:p_inicio, calculo:p_calculo },
     success: function(data){
       rpta_fecha = data;
     }
@@ -180,6 +164,54 @@ function f_buscar_data_bd(p_tabla_bd, p_campo_bd, p_data_buscar){
     }
   });
   return rpta_data;
+}
+
+function f_buscar_bd(p_tabla, p_c_where){
+  let rpta_data;
+  Accion = 'buscar_bd';
+  $.ajax({
+    url       : "ajax.php",
+    type      : "POST",
+    datatype  : "json",
+    async     : false,
+    data      : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, tabla:p_tabla, c_where:p_c_where},    
+    success   : function(data){
+      rpta_data = $.parseJSON(data);
+    }
+  });
+  return rpta_data;
+}
+
+function f_buscar_dato(p_nombre_tabla, p_campo_buscar, p_condicion_where){
+  let rpta_buscar = "";
+  Accion = 'buscar_dato';
+  $.ajax({
+    url       : "ajax.php",
+    type      : "POST",
+    datatype  : "json",
+    async     : false,
+    data      : { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_tabla:p_nombre_tabla, campo_buscar:p_campo_buscar, condicion_where:p_condicion_where },
+    success   : function(data){
+      rpta_buscar = data;
+    }
+  });
+  return rpta_buscar;
+}
+
+function f_contar_dato(p_nombre_tabla, p_campo_buscar, p_condicion_where){
+  let rpta_contar = "";
+  Accion = 'contar_dato';
+  $.ajax({
+    url       : "ajax.php",
+    type      : "POST",
+    datatype  : "json",
+    async     : false,
+    data      : { MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_tabla:p_nombre_tabla, campo_buscar:p_campo_buscar, condicion_where:p_condicion_where},
+    success   : function(data){
+      rpta_contar = data;
+    }
+  });
+  return rpta_contar;
 }
 
 ///:: SELECT DE USUARIOS ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::///

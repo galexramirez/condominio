@@ -7,7 +7,7 @@ class c_plantilla_templon
 
         echo "<h1></h1>";
         // Datos para de usaurio para la vista
-        $NombreUsuario= $_SESSION['USUA_NOMBRECORTO'];
+        $NombreUsuario= $_SESSION['USUA_NOMBRE_CORTO'];
         $FotoUsuario = $_SESSION['USUA_FOTOGRAFIA'];
              
         // Construye el SIDEBAR   

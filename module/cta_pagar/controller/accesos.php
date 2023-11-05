@@ -46,7 +46,7 @@ class accesos
         switch ($nombre_tabla) 
 		{
             case "tabla_listado_cta_pagar":
-                $tabla_html = '<table id="tabla_listado_cta_pagar" class="table table-striped table-bordered table-condensed w-80">
+                $tabla_html = '<table id="tabla_listado_cta_pagar" class="table table-striped table-bordered table-condensed w-100">
 									<thead class="text-center">
 										<tr>
 											<th>VER</th>
@@ -71,6 +71,26 @@ class accesos
 								</table>';
             break;
 
+			case "tabla_proveedor":
+                $tabla_html = '	<table id="tabla_proveedor" class="table table-striped table-bordered table-condensed w-100">
+									<thead class="text-center">
+										<tr>
+											<th>RUC</th>
+											<th>RAZON_SOCIAL</th>
+											<th>CONTACTO</th>
+											<th>CTA_BANCARIA_SOLES</th> 
+											<th>CORREO_ELECTRONICO</th>
+											<th>TELEFONO</th>
+											<th>ESTADO</th>
+											<th>DIRECCION_PRINCIPAL</th>
+											<th>DISTRITO</th>
+											<th>ACCION</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>';
+            break;
 
 			case "tabla_tc_cta_pagar_usuario":
                 $tabla_html = '	<table id="tabla_tc_cta_pagar_usuario" class="table table-striped table-bordered table-condensed w-100">
@@ -136,6 +156,21 @@ class accesos
 									{"data": "dpag_fecha_registro"},
                     				{"defaultContent": " '.$defaultContent2.' "}
                   				]';
+			break;
+
+			case "tabla_proveedor":
+				$defaultContent1 = "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btn_editar_proveedor'><i class='bi bi-pencil'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pencil' viewBox='0 0 16 16'><path d='M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z'/></svg></i></button></div></div>";
+				$columnas_html = '[	{"data": "prov_ruc"},
+									{"data": "prov_nombre"},
+									{"data": "prov_contacto"},
+									{"data": "prov_cta_banco_soles"},
+									{"data": "prov_email"},
+									{"data": "prov_nro_telefono"},
+									{"data": "prov_estado"},
+									{"data": "prov_direccion"},
+									{"data": "prov_distrito"},
+									{"defaultContent": " '.$defaultContent1.' "}
+								]';
 			break;
 
 			case "tabla_tc_cta_pagar_usuario":

@@ -8,30 +8,16 @@ class logico
 		MView($this->modulo,'local_view',compact('NombreDeModuloVista') );
 	}
 
-	public function select_categoria($tabla, $tc_ficha, $tc_categoria1)
+	public function select_categoria($tabla, $tc_variable, $tc_categoria1, $tc_categoria2)
 	{
 		MModel($this->modulo, 'crud');
 		$instancia_ajax = new crud();
-		$respuesta = $instancia_ajax->select_categoria($tabla, $tc_ficha, $tc_categoria1);
+		$respuesta = $instancia_ajax->select_categoria($tabla, $tc_variable, $tc_categoria1, $tc_categoria2);
 
 		$html = '<option value="">Seleccione una opcion</option>';
 
 		foreach ($respuesta as $row) {
 			$html .= '<option value="'.$row['Detalle'].'">'.$row['Detalle'].'</option>';
-		}
-		echo $html;
-	}
-
-	public function select_nombre_corto($roles_perfil)
-	{
-		MModel($this->modulo,'crud');
-        $instancia_ajax = new crud();
-        $respuesta = $instancia_ajax->select_nombre_corto($roles_perfil);
-
-		$html = '<option value="">Seleccione una opcion</option>';
-
-		foreach ($respuesta as $row) {
-			$html .= '<option value="'.$row['nombre_corto'].'">'.$row['nombre_corto'].'</option>';
 		}
 		echo $html;
 	}
@@ -44,6 +30,41 @@ class logico
 
         print json_encode($respuesta, JSON_UNESCAPED_UNICODE);
     }
+
+    public function buscar_bd($tabla, $c_where)
+    {
+        MModel($this->modulo,'crud');
+        $instancia_ajax  = new crud();
+        $respuesta = $instancia_ajax->buscar_bd($tabla, $c_where);
+
+        print json_encode($respuesta, JSON_UNESCAPED_UNICODE);
+    }
+
+    public function buscar_dato($nombre_tabla, $campo_buscar, $condicion_where)
+	{
+		$rpta_buscar_dato = "";
+        MModel($this->modulo, 'crud');
+		$instancia_ajax = new crud();
+		$respuesta = $instancia_ajax->buscar_dato($nombre_tabla, $campo_buscar, $condicion_where);
+
+        foreach ($respuesta as $row) {
+			$rpta_buscar_dato = $row[$campo_buscar];
+		}
+		echo $rpta_buscar_dato;
+	}
+
+    public function contar_dato($nombre_tabla, $campo_buscar, $condicion_where)
+	{
+		$rpta_contar_dato = "";
+        MModel($this->modulo, 'crud');
+		$instancia_ajax = new crud();
+		$respuesta = $instancia_ajax->contar_dato($nombre_tabla, $campo_buscar, $condicion_where);
+
+        foreach ($respuesta as $row) {
+			$rpta_contar_dato = $row['cantidad'];
+		}
+		echo $rpta_contar_dato;
+	}
 
     public function document_root()
     {
@@ -150,5 +171,19 @@ class logico
 		}
 		echo $html;
 	}
+
+    public function crear_proveedor($prov_ruc, $prov_nombre, $prov_contacto, $prov_cta_banco_soles, $prov_email, $prov_nro_telefono, $prov_estado, $prov_direccion, $prov_distrito, $prov_log)
+	{
+        MModel($this->modulo,'crud');
+        $instancia_ajax = new crud();
+        $respuesta = $instancia_ajax->crear_proveedor($prov_ruc, $prov_nombre, $prov_contacto, $prov_cta_banco_soles, $prov_email, $prov_nro_telefono, $prov_estado, $prov_direccion, $prov_distrito, $prov_log);
+	}  	
+	
+	public function editar_proveedor($prov_ruc, $prov_nombre, $prov_contacto, $prov_cta_banco_soles, $prov_email, $prov_nro_telefono, $prov_estado, $prov_direccion, $prov_distrito, $prov_log)
+	{
+        MModel($this->modulo,'crud');
+        $instancia_ajax = new crud();
+        $respuesta = $instancia_ajax->editar_proveedor($prov_ruc, $prov_nombre, $prov_contacto, $prov_cta_banco_soles, $prov_email, $prov_nro_telefono, $prov_estado, $prov_direccion, $prov_distrito, $prov_log);
+	}  		
 
 }

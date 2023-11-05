@@ -62,12 +62,13 @@ switch ($Accion)
 
    case 'select_categoria':
       $tabla         = $_POST['tabla'];
-      $tc_categoria1      = $_POST['tc_categoria1'];
+      $tc_variable   = $_POST['tc_variable'];
+      $tc_categoria1 = $_POST['tc_categoria1'];
       $tc_categoria2 = $_POST['tc_categoria2'];
 
       MController($modulo,'logico');
       $instancia_ajax = new logico();
-      $respuesta = $instancia_ajax->select_categoria($tabla, $tc_categoria1, $tc_categoria2);
+      $respuesta = $instancia_ajax->select_categoria($tabla, $tc_variable, $tc_categoria1, $tc_categoria2);
    break;
 
    case 'buscar_data_bd':
@@ -80,12 +81,33 @@ switch ($Accion)
       $respuesta = $instancia_ajax->buscar_data_bd($tabla_bd,$campo_bd,$data_buscar);
    break;
 
-   case 'select_nombre_corto':
-      $roles_perfil = $_POST['roles_perfil'];
+   case 'buscar_bd':
+      $tabla    = $_POST['tabla'];
+      $c_where  = $_POST['c_where'];
 
       MController($modulo,'logico');
       $instancia_ajax = new logico();
-      $respuesta = $instancia_ajax->select_nombre_corto($roles_perfil);
+      $respuesta = $instancia_ajax->buscar_bd($tabla, $c_where);
+   break;
+
+   case 'buscar_dato':
+      $nombre_tabla     = $_POST['nombre_tabla'];
+      $campo_buscar     = $_POST['campo_buscar'];
+      $condicion_where  = $_POST['condicion_where'];
+
+      MController($modulo,'logico');
+      $instancia_ajax = new logico();
+      $respuesta = $instancia_ajax->buscar_dato($nombre_tabla, $campo_buscar, $condicion_where);
+   break;
+
+   case 'contar_dato':
+      $nombre_tabla     = $_POST['nombre_tabla'];
+      $campo_buscar     = $_POST['campo_buscar'];
+      $condicion_where  = $_POST['condicion_where'];
+
+      MController($modulo,'logico');
+      $instancia_ajax = new logico();
+      $respuesta = $instancia_ajax->contar_dato($nombre_tabla, $campo_buscar, $condicion_where);
    break;
 
    case 'document_root':
@@ -161,6 +183,46 @@ switch ($Accion)
       $respuesta     = $instancia_ajax->leer_listado_cta_pagar($fecha_inicio, $fecha_termino);
    break;
 
+   case 'leer_proveedor':
+      MModel($modulo,'crud');
+      $instancia_ajax= new crud();
+      $respuesta = $instancia_ajax->leer_proveedor();
+   break;
+
+   case 'crear_proveedor':
+      $prov_ruc             = $_POST['prov_ruc'];
+      $prov_nombre          = strtoupper($_POST['prov_nombre']);
+      $prov_contacto        = strtoupper($_POST['prov_contacto']);
+      $prov_cta_banco_soles = $_POST['prov_cta_banco_soles'];
+      $prov_email           = strtolower($_POST['prov_email']);
+      $prov_nro_telefono    = $_POST['prov_nro_telefono'];
+      $prov_estado          = $_POST['prov_estado'];
+      $prov_direccion       = strtoupper($_POST['prov_direccion']);
+      $prov_distrito        = $_POST['prov_distrito'];
+      $prov_log             = $_POST['prov_log'];
+
+      MController($modulo,'logico');
+      $instancia_ajax = new logico();
+      $respuesta = $instancia_ajax->crear_proveedor($prov_ruc, $prov_nombre, $prov_contacto, $prov_cta_banco_soles, $prov_email, $prov_nro_telefono, $prov_estado, $prov_direccion, $prov_distrito, $prov_log);
+   break;
+
+   case 'editar_proveedor':
+      $prov_ruc             = $_POST['prov_ruc'];
+      $prov_nombre          = strtoupper($_POST['prov_nombre']);
+      $prov_contacto        = strtoupper($_POST['prov_contacto']);
+      $prov_cta_banco_soles = $_POST['prov_cta_banco_soles'];
+      $prov_email           = strtolower($_POST['prov_email']);
+      $prov_nro_telefono    = $_POST['prov_nro_telefono'];
+      $prov_estado          = $_POST['prov_estado'];
+      $prov_direccion       = strtoupper($_POST['prov_direccion']);
+      $prov_distrito        = $_POST['prov_distrito'];
+      $prov_log             = $_POST['prov_log'];
+
+      MController($modulo,'logico');
+      $instancia_ajax = new logico();
+      $respuesta = $instancia_ajax->editar_proveedor($prov_ruc, $prov_nombre, $prov_contacto, $prov_cta_banco_soles, $prov_email, $prov_nro_telefono, $prov_estado, $prov_direccion, $prov_distrito, $prov_log);
+   break;
+
    case 'leer_tc_cta_pagar_usuario':
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
@@ -186,7 +248,7 @@ switch ($Accion)
 
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
-      $respuesta     = $instancia_ajax->editar_tc_cta_pagar_usuario($tc_cta_pagar_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
+      $respuesta = $instancia_ajax->editar_tc_cta_pagar_usuario($tc_cta_pagar_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
    break;
 
    case 'borrar_tc_cta_pagar_usuario':
@@ -194,43 +256,43 @@ switch ($Accion)
 
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
-      $respuesta     = $instancia_ajax->borrar_tc_cta_pagar_usuario($tc_cta_pagar_id);
+      $respuesta = $instancia_ajax->borrar_tc_cta_pagar_usuario($tc_cta_pagar_id);
    break;
 
    case 'leer_tc_cta_pagar_sistema':
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
-      $respuesta     = $instancia_ajax->leer_tc_cta_pagar_sistema();
+      $respuesta = $instancia_ajax->leer_tc_cta_pagar_sistema();
    break;
 
    case 'crear_tc_cta_pagar_sistema':
-      $tc_cta_pagar_id = $_POST['tc_cta_pagar_id'];
+      $tc_cta_pagar_id  = $_POST['tc_cta_pagar_id'];
       $tc_categoria1    = strtoupper($_POST['tc_categoria1']);
       $tc_categoria2    = strtoupper($_POST['tc_categoria2']);
       $tc_categoria3    = strtoupper($_POST['tc_categoria3']);
 
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
-      $respuesta     = $instancia_ajax->crear_tc_cta_pagar_sistema($tc_cta_pagar_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
+      $respuesta = $instancia_ajax->crear_tc_cta_pagar_sistema($tc_cta_pagar_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
    break;
 
    case 'editar_tc_cta_pagar_sistema':
-      $tc_cta_pagar_id = $_POST['tc_cta_pagar_id'];
+      $tc_cta_pagar_id  = $_POST['tc_cta_pagar_id'];
       $tc_categoria1    = strtoupper($_POST['tc_categoria1']);
       $tc_categoria2    = strtoupper($_POST['tc_categoria2']);
       $tc_categoria3    = strtoupper($_POST['tc_categoria3']);
 
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
-      $respuesta     = $instancia_ajax->editar_tc_cta_pagar_sistema($tc_cta_pagar_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
+      $respuesta = $instancia_ajax->editar_tc_cta_pagar_sistema($tc_cta_pagar_id, $tc_categoria1, $tc_categoria2, $tc_categoria3);
    break;
 
    case 'borrar_tc_cta_pagar_sistema':
-      $tc_cta_pagar_id=$_POST['tc_cta_pagar_id'];
+      $tc_cta_pagar_id = $_POST['tc_cta_pagar_id'];
 
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
-      $respuesta     = $instancia_ajax->borrar_tc_cta_pagar_sistema($tc_cta_pagar_id);
+      $respuesta = $instancia_ajax->borrar_tc_cta_pagar_sistema($tc_cta_pagar_id);
    break;
 
    default: header('Location: /inicio');

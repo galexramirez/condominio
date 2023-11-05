@@ -7,7 +7,7 @@ class crud
 
 	function __construct()
 	{
-		if (!isset($_SESSION['USUARIO_ID'])){         
+		if(!isset($_SESSION['USUARIO_ID'])){         
 			session_destroy();
 			echo '<script>window.location.href = "log_out";</script>';  
 			exit();
@@ -17,25 +17,9 @@ class crud
 		$this->conexion=$Instancia->Conectar(); 	
 	}
 
-	function select_categoria($tabla, $tc_categoria1, $tc_categoria2)
+	function select_categoria($tabla, $tc_variable, $tc_categoria1, $tc_categoria2)
 	{
-		$consulta="SELECT `$tabla`.`tc_categoria3` AS `Detalle` FROM `$tabla` WHERE `$tabla`.`tc_categoria1` = '$tc_categoria1' AND `$tabla`.`tc_categoria2`= '$tc_categoria2' ORDER BY`Detalle` ASC";
-
-		$resultado = $this->conexion->prepare($consulta);
-		$resultado->execute();        
-		$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-		return $data;
-
-		$this->conexion=null;
-	}
-
-	function select_nombre_corto($roles_perfil)
-	{
-		if(!empty($roles_perfil)){
-			$consulta="SELECT `glo_roles`.`roles_nombre_corto` AS `nombre_corto` FROM `glo_roles` WHERE `roles_perfil` = '$roles_perfil' ORDER BY `nombre_corto` ASC";
-		}else{
-			$consulta="SELECT `glo_roles`.`roles_nombre_corto` AS `nombre_corto` FROM `glo_roles` ORDER BY `nombre_corto` ASC";
-		}
+		$consulta="SELECT `$tabla`.`tc_categoria3` AS `Detalle` FROM `$tabla` WHERE `$tabla`.`tc_variable` = '$tc_variable' AND `$tabla`.`tc_categoria1` = '$tc_categoria1' AND `$tabla`.`tc_categoria2`= '$tc_categoria2' ORDER BY`Detalle` ASC";
 
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();        
@@ -56,6 +40,41 @@ class crud
 		$this->conexion=null;
 	}
 
+	function buscar_bd($tabla, $c_where)
+	{
+		$consulta  ="SELECT * FROM `$tabla` WHERE ".$c_where;
+		$resultado = $this->conexion->prepare($consulta);
+		$resultado->execute();
+		$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+		return $data;
+		$this->conexion=null;
+	}
+
+	function buscar_dato($nombre_tabla, $campo_buscar, $condicion_where)
+	{
+		$consulta = "SELECT `$nombre_tabla`.`$campo_buscar` FROM `$nombre_tabla` WHERE ".$condicion_where;
+
+		$resultado = $this->conexion->prepare($consulta);
+		$resultado->execute();
+		
+		$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+		return $data;   
+		$this->conexion=null;
+	}
+
+	function contar_dato($nombre_tabla, $campo_buscar, $condicion_where)
+	{
+		$consulta = "SELECT COUNT(`$nombre_tabla`.`$campo_buscar`) AS `cantidad` FROM `$nombre_tabla` WHERE ".$condicion_where;
+
+		$resultado = $this->conexion->prepare($consulta);
+		$resultado->execute();
+		
+		$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+		return $data;   
+		$this->conexion=null;
+	}
+
 	function max_id($tabla_bd,$campo_id)
 	{
 		$consulta = "SELECT MAX(`$campo_id`) AS `max_id` FROM `$tabla_bd`";
@@ -73,12 +92,12 @@ class crud
 		$rpta_permisos 		= "";
 		$cacces_modulo_id 	= "";
 		$cacces_objeto_id 	= "";
-		$cacces_perfil 		= $_SESSION['USU_PERFIL'];
+		$cacces_perfil 		= $_SESSION['USUA_PERFIL'];
 
 		$consulta = "SELECT * FROM `glo_modulo` WHERE `glo_modulo`.`mod_nombre` = '$cacces_nombre_modulo'";
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();
-		$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+		$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
 		foreach($data as $row){
 			$cacces_modulo_id = $row['modulo_id'];
 		}
@@ -86,7 +105,7 @@ class crud
 		$consulta = "SELECT * FROM `glo_objeto` WHERE `glo_objeto`.`obj_nombre_objeto` = '$cacces_nombre_objeto'";
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();
-		$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+		$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
 		foreach($data as $row){
 			$cacces_objeto_id = $row['objeto_id'];
 		}
@@ -125,7 +144,19 @@ class crud
 
 	function select_roles($roles_perfil, $roles_campo)
 	{
-		$consulta="SELECT `glo_maestro`.`$roles_campo` AS `nombres` FROM `glo_roles` RIGHT JOIN `glo_maestro` ON `glo_maestro`.`maestro_id`= `glo_roles`.`roles_dni` AND `glo_maestro`.`maes_estado`='ACTIVO' WHERE `glo_roles`.`roles_perfil` = '$roles_perfil'  ORDER BY `nombres` ASC";
+		$consulta = " 	SELECT 
+							`glo_maestro`.`$roles_campo` AS `nombres` 
+						FROM 
+							`glo_roles` 
+						RIGHT JOIN 
+							`glo_maestro` 
+						ON 
+							`glo_maestro`.`maestro_id`= `glo_roles`.`roles_dni` AND 
+							`glo_maestro`.`maes_estado`='ACTIVO' 
+						WHERE 
+							`glo_roles`.`roles_perfil` = '$roles_perfil'  
+						ORDER BY 
+							`nombres` ASC";
 
 		$resultado = $this->conexion->prepare($consulta);
 		$resultado->execute();        
@@ -146,6 +177,57 @@ class crud
         print json_encode($data, JSON_UNESCAPED_UNICODE);
         $this->conexion=null;
    	}   
+
+	function leer_proveedor()
+	{
+        $consulta = "SELECT * FROM `proveedor`";
+
+        $resultado = $this->conexion->prepare($consulta);
+        $resultado->execute();        
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+
+        print json_encode($data, JSON_UNESCAPED_UNICODE);
+        $this->conexion=null;
+   	}   
+
+	function crear_proveedor($prov_ruc, $prov_nombre, $prov_contacto, $prov_cta_banco_soles, $prov_email, $prov_nro_telefono, $prov_estado, $prov_direccion, $prov_distrito, $prov_log)
+	{
+        $prov_usuario = $_SESSION['USUA_NOMBRE_CORTO'];
+        $prov_fecha_creacion = date("Y-m-d H:i:s");
+        $prov_log = "<strong>".$prov_estado."</strong> ".$prov_fecha_creacion." ".$prov_usuario." CREACIÓN <br>";	
+
+		$consulta = "INSERT INTO `proveedor`(`prov_ruc`, `prov_nombre`, `prov_contacto`, `prov_cta_banco_soles`, `prov_email`, `prov_nro_telefono`, `prov_estado`, `prov_direccion`, `prov_distrito`, `prov_log`) VALUES ('$prov_ruc', '$prov_nombre', '$prov_contacto', '$prov_cta_banco_soles', '$prov_email', '$prov_nro_telefono', '$prov_estado', '$prov_direccion', '$prov_distrito', '$prov_log')";
+
+		$resultado = $this->conexion->prepare($consulta);
+		$resultado->execute();   
+
+		$consulta = "SELECT * FROM `proveedor`";
+        $resultado = $this->conexion->prepare($consulta);
+        $resultado->execute();        
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        print json_encode($data, JSON_UNESCAPED_UNICODE);
+        $this->conexion=null;	
+	}  	
+	
+	function editar_proveedor($prov_ruc, $prov_nombre, $prov_contacto, $prov_cta_banco_soles, $prov_email, $prov_nro_telefono, $prov_estado, $prov_direccion, $prov_distrito, $prov_log)
+	{
+        $prov_log_edit = '';
+		$prov_usuario = $_SESSION['USUA_NOMBRE_CORTO'];
+        $prov_fecha_edicion = date("Y-m-d H:i:s");
+        $prov_log_edit = "<strong>".$prov_estado."</strong> ".$prov_fecha_edicion." ".$prov_usuario." EDICIÓN <br>".$prov_log;
+
+		$consulta = "UPDATE `proveedor` SET `prov_nombre`='$prov_nombre', `prov_contacto`='$prov_contacto', `prov_cta_banco_soles`='$prov_cta_banco_soles',  `prov_email`='$prov_email',`prov_nro_telefono`='$prov_nro_telefono', `prov_estado`='$prov_estado', `prov_direccion`='$prov_direccion', `prov_distrito`='$prov_distrito',`prov_log`='$prov_log_edit' WHERE `prov_ruc`='$prov_ruc'";
+
+		$resultado = $this->conexion->prepare($consulta);
+		$resultado->execute();   
+
+		$consulta= "SELECT * FROM `proveedor` WHERE `prov_ruc` ='$prov_ruc'";
+        $resultado = $this->conexion->prepare($consulta);
+        $resultado->execute();        
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        print json_encode($data, JSON_UNESCAPED_UNICODE);//envio el array final el formato json a AJAX
+        $this->conexion=null;	
+	}  		
 
 	function leer_tc_cta_pagar_usuario()
 	{

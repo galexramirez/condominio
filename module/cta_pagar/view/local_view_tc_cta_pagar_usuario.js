@@ -103,7 +103,13 @@ $(document).ready(function(){
         validar_tc_cta_pagar_usuario = f_validar_tc_cta_pagar_usuario(tc_cta_pagar_id_usuario, ctap_cat1_usuario, ctap_cat2_usuario, ctap_cat3_usuario);
 
         if(validar_tc_cta_pagar_usuario=="invalido") {
-
+            Swal.fire({
+                position            : 'center',
+                icon                : 'error',
+                title               : '*Falta Completar Información!!!',
+                showConfirmButton   : false,
+                timer               : 1500
+            })
         }else{
             if(opcion_tc_cta_pagar_usuario == "CREAR") { Accion = 'crear_tc_cta_pagar_usuario'; }
             if(opcion_tc_cta_pagar_usuario == "EDITAR") { Accion = 'editar_tc_cta_pagar_usuario'; }    

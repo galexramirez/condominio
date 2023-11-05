@@ -102,8 +102,14 @@ $(document).ready(function(){
     
         validar_tc_cta_pagar_sistema = f_validar_tc_cta_pagar_sistema(tc_cta_pagar_id_sistema, ctap_cat1_sistema, ctap_cat2_sistema, ctap_cat3_sistema);
 
-        if(validar_tc_cta_pagar_sistema=="invalido") {
-
+        if(validar_tc_cta_pagar_sistema == "invalido") {
+            Swal.fire({
+                position            : 'center',
+                icon                : 'error',
+                title               : '*Falta Completar Información!!!',
+                showConfirmButton   : false,
+                timer               : 1500
+            })
         }else{
             if(opcion_tc_cta_pagar_sistema == "CREAR") { Accion = 'crear_tc_cta_pagar_sistema'; }
             if(opcion_tc_cta_pagar_sistema == "EDITAR") { Accion = 'editar_tc_cta_pagar_sistema'; }    

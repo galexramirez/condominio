@@ -44,13 +44,17 @@ div.dt-buttons {
     color:white;
 }
 
-
-#tabla_tc_condominio_usuario thead {
+#tabla_proveedor thead {
     background: #2A4C38;
     color:white;
 }
 
-#tabla_tc_condominio_sistema thead {
+#tabla_tc_cta_pagar_usuario thead {
+    background: #2A4C38;
+    color:white;
+}
+
+#tabla_tc_cta_pagar_sistema thead {
     background: #2A4C38;
     color:white;
 }
@@ -59,11 +63,15 @@ div.dt-buttons {
     font-size: 12px;
 }
 
-#tabla_tc_condominio_usuario{
+#tabla_proveedor{
     font-size: 12px;
 }
 
-#tabla_tc_condominio_sistema{
+#tabla_tc_cta_pagar_usuario{
+    font-size: 12px;
+}
+
+#tabla_tc_cta_pagar_sistema{
     font-size: 12px;
 }
 
