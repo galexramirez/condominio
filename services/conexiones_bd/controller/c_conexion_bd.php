@@ -14,8 +14,8 @@
             //define('usuario', 'root');
         }
         if(defined('password')==false){
-            //define('password', 'F9b.q@0%K7sM');
-            define('password', '');
+            define('password', 'F9b.q@0%K7sM');
+            //define('password', '');
         }
         
         $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');			
