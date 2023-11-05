@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS `bd_condominio`.`doc_pagar` (
+  `doc_pagar_id` INT NOT NULL AUTO_INCREMENT,
+  `dpag_periodo` VARCHAR(45) NOT NULL,
+  `dpag_estado` VARCHAR(45) NOT NULL,
+  `dpag_tipo` VARCHAR(45) NOT NULL,
+  `dpag_nro_documento` VARCHAR(45) NOT NULL,
+  `dpag_fecha_documento` DATE NOT NULL,
+  `dpag_ruc_proveedor` VARCHAR(11) NOT NULL,
+  `dpag_nombre_proveedor` VARCHAR(100) NOT NULL,
+  `dpag_descripcion` VARCHAR(250) NULL,
+  `dpag_nro_cotizacion` VARCHAR(45) NULL,
+  `dpag_fecha_cotizacion` DATE NULL,
+  `dpag_subtotal` FLOAT NOT NULL,
+  `dpag_igv` FLOAT NOT NULL,
+  `dpag_monto_total` FLOAT NOT NULL,
+  `dpag_fecha_registro` DATETIME NOT NULL,
+  `dpag_usuario_registra` VARCHAR(8) NOT NULL,
+  `dpag_log` VARCHAR(1000) NULL,
+  `dpag_imagen` VARCHAR(2) NOT NULL,
+  PRIMARY KEY (`doc_pagar_id`))
+ENGINE = InnoDB;

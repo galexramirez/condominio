@@ -31,33 +31,24 @@
     $ruta=$_SERVER['REQUEST_URI'];
    
     switch ($ruta)
-        {
-        case '/inicio':
-            MController('sesion','renderice'); break;
+    {
+        case '/inicio': MController('sesion','renderice'); break;
 
-        case '/usuario':
-            MController('usuario','renderice'); break;
+        case '/usuario': MController('usuario','renderice'); break;
     
-        case '/maestro':
-            MController('maestro','renderice');   break;
+        case '/maestro': MController('maestro','renderice'); break;
     
-        case '/recupera_contrasena':
-            MController('recupera_contrasena','renderice');    break;     
+        case '/recupera_contrasena': MController('recupera_contrasena','renderice'); break;     
 
-        case '/ajuste_generales':
-            MController('ajuste_generales','renderice');    break;     
+        case '/ajuste_generales': MController('ajuste_generales','renderice'); break;     
 
-        case '/log_out':
-            MController('sesion','log_out');    break;     
+        case '/log_out': MController('sesion','log_out'); break;
 
-        case '/ajuste_usuario':
-            MController('ajuste_usuario','renderice');    break;     
+        case '/ajuste_usuario': MController('ajuste_usuario','renderice'); break;     
 
-        case '/condominio':
-            MController('condominio','renderice');    break;     
+        case '/condominio': MController('condominio','renderice'); break;     
 
-        case '/ajuste_condominio':
-            MController('ajuste_condominio','renderice');    break;     
+        case '/cta_pagar': MController('cta_pagar','renderice'); break;     
 
         default: header('Location: /inicio');
-        }
+    }

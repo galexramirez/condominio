@@ -238,6 +238,112 @@
 
 			</div>
 
+			<!-- TAB PERIODO -->
+			<div class="tab-pane fade" id="nav-periodo" role="tabpanel" aria-labelledby="nav-periodo-tab">
+
+				<section class="container-fluid py-3">
+					<div id="div_btn_nuevo_periodo">
+
+					</div>
+				</section>
+
+				<div class="row p-3">
+					<div class="col-auto m-0">
+						<div class="table-responsive" id="div_tabla_periodo">
+							
+						</div>
+					</div>
+				</div>
+
+				<!--Modal para CRUD-->
+				<div class="row modal fade" id="modal_crud_periodo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+	   
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel"></h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+	  
+			  				<form id="form_periodo">    
+				  				<div class="modal-body">
+					  				<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label for="periodo_id" class="col-form-label form-control-sm">PERIODO ID</label>
+												<input type="text" readonly class="form-control form-control-sm" id="periodo_id">
+											</div>
+										</div>
+					  				</div>
+					  				<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label for="peri_anio" class="col-form-label form-control-sm">AÑO</label>
+												<input type="number" class="form-control form-control-sm" id="peri_anio">
+											</div> 
+									  	</div>    
+										  <div class="col-lg-6">
+											<div class="form-group">
+												<label for="peri_mes" class="col-form-label form-control-sm">MES</label>
+												<select class="form-control form-control-sm" id="peri_mes">
+													<option value="ENERO">ENERO</option>
+													<option value="FEBRERO">FEBRERO</option>
+													<option value="MARZO">MARZO</option>
+													<option value="ABRIL">ABRIL</option>
+													<option value="MAYO">MAYO</option>
+													<option value="JUNIO">JUNIO</option>
+													<option value="JULIO">JULIO</option>
+													<option value="AGOSTO">AGOSTO</option>
+													<option value="SETIEMBRE">SETIEMBRE</option>
+													<option value="OCTUBRE">OCTUBRE</option>
+													<option value="NOVIEMBRE">NOVIEMBRE</option>
+													<option value="DICIEMBRE">DICIEMBRE</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="row"> 
+										<div class="col-lg-6">
+							  				<div class="form-group">
+												<label for="peri_proceso" class="col-form-label form-control-sm">PROCESO</label>
+												<input type='text' class="form-control form-control-sm text-uppercase" id="peri_proceso">
+											</div>
+						  				</div>
+						  				<div class="col-lg-6">
+							  				<div class="form-group">
+												<label for="peri_descripcion" class="col-form-label form-control-sm">PERIODO</label>
+												<input type="text" readonly class="form-control form-control-sm" id="peri_descripcion">
+											</div>               
+						   				</div>
+					  				</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label for="peri_fecha_inicio" class="col-form-label form-control-sm">FECHA INICIO</label>
+												<input type="date" class="form-control form-control-sm" id="peri_fecha_inicio" placeholder="dd/mm/aaaaa">
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+											<label for="peri_fecha_termino" class="col-form-label form-control-sm">FECHA TERMINO</label>
+												<input type="date" class="form-control form-control-sm" id="peri_fecha_termino" placeholder="dd/mm/aaaaa">
+											</div> 
+									  	</div>    
+					  				</div>
+
+								</div>
+				  				<div class="modal-footer">
+					  				<button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
+					  				<button type="submit" id="btn_guardar:periodo" class="btn btn-dark btn-sm btn_guardar_periodo">Guardar</button>
+				  				</div>
+			  				</form>    
+						</div>
+					</div>
+				</div>  			
+			</div>
+
 			<!-- TAB MODULOS -->
 			<div class="tab-pane fade" id="nav-modulo" role="tabpanel" aria-labelledby="nav-modulo-tab">
 				<section class="container-fluid py-3" id="div_btn_seleccion_modulo">

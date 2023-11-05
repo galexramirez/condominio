@@ -130,14 +130,14 @@ function f_creacion_tabla(p_nombre_tabla,p_tipo_tabla){
 
 function f_columnas_tabla(p_nombre_tabla,p_tipo_tabla){
   let rpta_columnas = "";
-  Accion='columnas_tabla';
+  Accion = 'columnas_tabla';
   $.ajax({
-    url: "ajax.php",
-    type: "POST",
-    datatype:"json",
-    async: false,
-    data: {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_tabla:p_nombre_tabla,tipo_tabla:p_tipo_tabla},    
-    success: function(data){
+    url     : "ajax.php",
+    type    : "POST",
+    datatype: "json",
+    async   : false,
+    data    : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_tabla:p_nombre_tabla,tipo_tabla:p_tipo_tabla},    
+    success : function(data){
       rpta_columnas = $.parseJSON(data);
     }
   });

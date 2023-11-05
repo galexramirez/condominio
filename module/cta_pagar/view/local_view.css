@@ -1,6 +1,11 @@
 th{
-    font-size: 12px;
+    font-size: 9px;
     font-weight: 500;
+}
+
+.filters_listado_cta_pagar th{
+    padding:0px !important;
+    font-size: 11px
 }
 
 table.dataTable thead {
@@ -34,84 +39,31 @@ div.dt-buttons {
 }
 
 /* tamaño de texto data tables*/
-#tabla_roles thead {
+#tabla_listado_cta_pagar thead {
     background: #2A4C38;
     color:white;
 }
 
-#tabla_tipo_cambio thead {
+
+#tabla_tc_condominio_usuario thead {
     background: #2A4C38;
     color:white;
 }
 
-#tabla_periodo thead {
+#tabla_tc_condominio_sistema thead {
     background: #2A4C38;
     color:white;
 }
 
-#tabla_modulo thead {
-    background: #2A4C38;
-    color:white;
-}
-
-#tabla_permisos thead {
-    background: #2A4C38;
-    color:white;
-}
-
-#tabla_objeto thead {
-    background: #2A4C38;
-    color:white;
-}
-
-#tabla_control_acceso thead {
-    background: #2A4C38;
-    color:white;
-}
-
-#tabla_tc_maestro thead {
-    background: #2A4C38;
-    color:white;
-}
-
-#tabla_tc_usuario thead {
-    background: #2A4C38;
-    color:white;
-}
-
-#tabla_roles{
+#tabla_listado_cta_pagar{
     font-size: 12px;
 }
 
-#tabla_tipo_cambio{
+#tabla_tc_condominio_usuario{
     font-size: 12px;
 }
 
-#tabla_periodo{
-    font-size: 12px;
-}
-
-#tabla_modulo{
-    font-size: 12px;
-}
-
-#tabla_permisos{
-    font-size: 12px;
-}
-
-#tabla_objeto{
-    font-size: 12px;
-}
-
-#tabla_control_acceso{
-    font-size: 12px;
-}
-
-#tabla_tc_maestro{
-    font-size: 12px;
-}
-
-#tabla_tc_usuario{
+#tabla_tc_condominio_sistema{
     font-size: 12px;
 }
 

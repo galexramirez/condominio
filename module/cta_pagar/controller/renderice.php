@@ -1,7 +1,7 @@
 <?php 
 // 1.0 DATOS A USARSE EN EL MODULO - MODIFICAR SI SE CREA NUEVO MODULO
-    $NombreDeModulo="ajuste_generales"; // Como figura en la BD
-    $NombreDeModuloVista="Ajustes Generales"; // Como se muestra la usuario
+    $NombreDeModulo="cta_pagar"; // Como figura en la BD
+    $NombreDeModuloVista="Cuentas por Pagar"; // Como se muestra la usuario
 
 // 2.0 VERIFICA PERMISOS DEL USUARIO SOBRE EL MODULO
 
@@ -18,7 +18,7 @@
         { session_destroy();  header('Location: /inicio'); }
 
  // 3.0 RECURSOS PARA EL MODULO     
-    $InsertHead="   <link rel='stylesheet' href='module/ajuste_generales/view/local_view.css' type='text/css' media='all'>
+    $InsertHead="   <link rel='stylesheet' href='module/cta_pagar/view/local_view.css' type='text/css' media='all'>
                     <link rel='stylesheet' type='text/css' href='services/resources/DataTables-10.25/datatables/datatables.min.css'> 
                     <link rel='stylesheet' type='text/css' href='services/resources/DataTables-10.25/datatables/DataTables-1.10.25/css/dataTables.bootstrap4.min.css'>
                     <link rel='stylesheet' type='text/css' href='services/resources/DataTables-10.25/datatables/Buttons-1.7.1/css/buttons.bootstrap4.min.css'>
@@ -36,16 +36,13 @@
                     <script type='text/javascript' src='services/resources/DataTables-10.25/datatables/Buttons-1.7.1/js/buttons.html5.min.js'></script>
                     <script type='text/javascript' src='services/resources/DataTables-10.25/datatables/Buttons-1.7.1/js/buttons.print.min.js'></script>
                     <script type='text/javascript' src='services/resources/cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js'></script>
-                    <script src='module/ajuste_generales/view/local_view_inicio.js' type='text/javascript'></script>
-                    <script src='module/ajuste_generales/view/local_view_roles.js' type='text/javascript'></script>
-                    <script src='module/ajuste_generales/view/local_view_tipo_cambio.js' type='text/javascript'></script>
-                    <script src='module/ajuste_generales/view/local_view_periodo.js' type='text/javascript'></script>
-                    <script src='module/ajuste_generales/view/local_view_modulo.js' type='text/javascript'></script>
-                    <script src='module/ajuste_generales/view/local_view_permisos.js' type='text/javascript'></script>
-                    <script src='module/ajuste_generales/view/local_view_objeto.js' type='text/javascript'></script>
-                    <script src='module/ajuste_generales/view/local_view_control_acceso.js' type='text/javascript'></script>
-                    <script src='module/ajuste_generales/view/local_view_tc_maestro.js' type='text/javascript'></script>
-                    <script src='module/ajuste_generales/view/local_view_tc_usuario.js' type='text/javascript'></script>";
+                    <script src='module/cta_pagar/view/local_view_inicio.js' type='text/javascript'></script>
+                    <script src='module/cta_pagar/view/local_view_listado.js' type='text/javascript'></script>
+                    <script src='module/cta_pagar/view/local_view_registro.js' type='text/javascript'></script>
+                    <script src='module/cta_pagar/view/local_view_proveedor.js' type='text/javascript'></script>
+                    <script src='module/cta_pagar/view/local_view_reporte.js' type='text/javascript'></script>
+                    <script src='module/cta_pagar/view/local_view_tc_cta_pagar_usuario.js' type='text/javascript'></script>
+                    <script src='module/cta_pagar/view/local_view_tc_cta_pagar_sistema.js' type='text/javascript'></script>";
                     
 // 4.0 CONTRUCCION DE LA VISTA
 

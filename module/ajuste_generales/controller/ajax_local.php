@@ -247,6 +247,48 @@ switch ($Accion)
       $respuesta = $instancia_ajax->borrar_tipo_cambio($tipo_cambio_id);
    break;
 
+   case 'leer_periodo':
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
+      $respuesta = $instancia_ajax->leer_periodo();
+   break;
+
+   case 'crear_periodo':
+      $periodo_id=$_POST['periodo_id'];
+      $peri_anio = $_POST['peri_anio'];
+      $peri_mes = $_POST['peri_mes'];
+      $peri_proceso = strtoupper($_POST['peri_proceso']);
+      $peri_descripcion = $_POST['peri_descripcion'];
+      $peri_fecha_inicio = $_POST['peri_fecha_inicio'];
+      $peri_fecha_termino = $_POST['peri_fecha_termino'];
+
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
+      $respuesta = $instancia_ajax->crear_periodo($periodo_id, $peri_anio, $peri_mes, $peri_proceso, $peri_descripcion, $peri_fecha_inicio, $peri_fecha_termino);
+   break;
+
+   case 'editar_periodo':
+      $periodo_id=$_POST['periodo_id'];
+      $peri_anio = $_POST['peri_anio'];
+      $peri_mes = $_POST['peri_mes'];
+      $peri_proceso = strtoupper($_POST['peri_proceso']);
+      $peri_descripcion = $_POST['peri_descripcion'];
+      $peri_fecha_inicio = $_POST['peri_fecha_inicio'];
+      $peri_fecha_termino = $_POST['peri_fecha_termino'];
+
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
+      $respuesta = $instancia_ajax->editar_periodo($periodo_id, $peri_anio, $peri_mes, $peri_proceso, $peri_descripcion, $peri_fecha_inicio, $peri_fecha_termino);
+   break;
+
+   case 'borrar_periodo':
+      $periodo_id = $_POST['periodo_id'];
+
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
+      $respuesta = $instancia_ajax-> borrar_periodo($periodo_id);
+   break;
+
    case 'leer_modulo':
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
