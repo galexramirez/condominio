@@ -170,8 +170,8 @@ switch ($Accion)
    case 'buscar_manual':
       $man_modulo_id = $_POST['man_modulo_id'];
 
-      MModel($modulo,'CRUD');
-      $instancia_ajax = new CRUD();
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
       $respuesta = $instancia_ajax->buscar_manual($man_modulo_id);
    break;
 
@@ -179,8 +179,8 @@ switch ($Accion)
       $man_modulo_id = $_POST['man_modulo_id'];
       $man_titulo  = strtoupper($_POST['man_titulo']);
 
-      MModel($modulo,'CRUD');
-      $instancia_ajax = new CRUD();
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
       $respuesta = $instancia_ajax->crear_manual_registro($man_modulo_id, $man_titulo, $man_html);
    break;
 
@@ -188,16 +188,16 @@ switch ($Accion)
       $manual_id        = $_POST['manual_id'];
       $man_html         = $_POST['man_html'];
 
-      MModel($modulo,'CRUD');
-      $instancia_ajax = new CRUD();
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
       $respuesta = $instancia_ajax->editar_manual_registro($manual_id, $man_html);
    break;
 
    case 'borrar_manual_registro':
       $manual_id = $_POST['manual_id'];
 
-      MModel($modulo,'CRUD');
-      $instancia_ajax = new CRUD();
+      MModel($modulo,'crud');
+      $instancia_ajax = new crud();
       $respuesta = $instancia_ajax->borrar_manual_registro($manual_id);
    break;
 
