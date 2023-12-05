@@ -64,16 +64,16 @@ function f_buscar_data_bd(p_tabla_bd, p_campo_bd, p_data_buscar){
 }
 ///:: FIN BUSCAR DATA EN BD :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::///
 
-//::::::::::::::::::::::::::::::::: FUNCIONES ACCESOS :::::::::::::::::::::::::::::::::::::///
+///:: FUNCIONES ACCESOS :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::///
 function f_creacion_tab(p_nombre_tab,p_tipo_tab){
-  let rpta_tab="";
-  Accion='creacion_tab';
+  let rpta_tab = "";
+  Accion = 'creacion_tab';
   $.ajax({
-    url: "ajax.php",
-    type: "POST",
+    url     : "ajax.php",
+    type    : "POST",
     datatype:"json",
-    async: false,
-    data: {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_tab:p_nombre_tab, tipo_tab:p_tipo_tab},    
+    async   : false,
+    data    : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_tab:p_nombre_tab, tipo_tab:p_tipo_tab},    
     success: function(data){
       rpta_tab = data;
     }
@@ -82,14 +82,14 @@ function f_creacion_tab(p_nombre_tab,p_tipo_tab){
 }
 
 function f_creacion_tabla(p_nombre_tabla,p_tipo_tabla){
-  let rpta_tabla="";
-  Accion='creacion_tabla';
+  let rpta_tabla = "";
+  Accion = 'creacion_tabla';
   $.ajax({
-    url: "ajax.php",
-    type: "POST",
-    datatype:"json",
-    async: false,
-    data: {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_tabla:p_nombre_tabla, tipo_tabla:p_tipo_tabla},    
+    url     : "ajax.php",
+    type    : "POST",
+    datatype: "json",
+    async   : false,
+    data    : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_tabla:p_nombre_tabla, tipo_tabla:p_tipo_tabla},    
     success: function(data){
       rpta_tabla = data;
     }
@@ -99,13 +99,13 @@ function f_creacion_tabla(p_nombre_tabla,p_tipo_tabla){
 
 function f_columnas_tabla(p_nombre_tabla,p_tipo_tabla){
   let rpta_columnas = "";
-  Accion='columnas_tabla';
+  Accion = 'columnas_tabla';
   $.ajax({
-    url: "ajax.php",
-    type: "POST",
+    url     : "ajax.php",
+    type    : "POST",
     datatype:"json",
-    async: false,
-    data: {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_tabla:p_nombre_tabla,tipo_tabla:p_tipo_tabla},    
+    async   : false,
+    data    : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_tabla:p_nombre_tabla,tipo_tabla:p_tipo_tabla},    
     success: function(data){
       rpta_columnas = $.parseJSON(data);
     }
@@ -113,15 +113,15 @@ function f_columnas_tabla(p_nombre_tabla,p_tipo_tabla){
   return rpta_columnas;
 }
 
-function f_botones_formulario(p_nombre_formulario,p_nombre_objeto){
-  let rpta_btn_formulario="";
-  Accion='botones_formulario';
+function f_botones_formulario(p_nombre_formulario, p_nombre_objeto){
+  let rpta_btn_formulario = "";
+  Accion = 'botones_formulario';
   $.ajax({
-    url: "ajax.php",
-    type: "POST",
+    url     : "ajax.php",
+    type    : "POST",
     datatype:"json",
-    async: false,
-    data: {MoS:MoS,NombreMoS:NombreMoS,Accion:Accion,nombre_formulario:p_nombre_formulario,nombre_objeto:p_nombre_objeto},    
+    async   : false,
+    data    : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_formulario:p_nombre_formulario, nombre_objeto:p_nombre_objeto},    
     success: function(data){
       rpta_btn_formulario = data;
     }
@@ -129,15 +129,15 @@ function f_botones_formulario(p_nombre_formulario,p_nombre_objeto){
   return rpta_btn_formulario;
 }
 
-function f_div_formulario(p_nombre_formulario,p_nombre_objeto){
-  let rpta_div_formulario="";
-  Accion='div_formulario';
+function f_div_formulario(p_nombre_formulario, p_nombre_objeto){
+  let rpta_div_formulario = "";
+  Accion = 'div_formulario';
   $.ajax({
-    url: "ajax.php",
-    type: "POST",
-    datatype:"json",
-    async: false,
-    data: {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_formulario:p_nombre_formulario, nombre_objeto:p_nombre_objeto},    
+    url     : "ajax.php",
+    type    : "POST",
+    datatype: "json",
+    async   : false,
+    data    : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_formulario:p_nombre_formulario, nombre_objeto:p_nombre_objeto},    
     success: function(data){
       rpta_div_formulario = data;
     }
@@ -145,15 +145,15 @@ function f_div_formulario(p_nombre_formulario,p_nombre_objeto){
   return rpta_div_formulario;
 }
 
-function f_mostrar_div(p_nombre_formulario,p_nombre_objeto,p_dato1, p_dato2){
-  let rpta_mostrar_div="";
-  Accion='mostrar_div';
+function f_mostrar_div(p_nombre_formulario, p_nombre_objeto, p_dato1, p_dato2){
+  let rpta_mostrar_div = "";
+  Accion = 'mostrar_div';
   $.ajax({
-    url: "ajax.php",
-    type: "POST",
-    datatype:"json",
-    async: false,
-    data: {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_formulario:p_nombre_formulario, nombre_objeto:p_nombre_objeto, dato1:p_dato1, dato2:p_dato2 },
+    url     : "ajax.php",
+    type    : "POST",
+    datatype: "json",
+    async   : false,
+    data    : {MoS:MoS, NombreMoS:NombreMoS, Accion:Accion, nombre_formulario:p_nombre_formulario, nombre_objeto:p_nombre_objeto, dato1:p_dato1, dato2:p_dato2 },
     success: function(data){
       rpta_mostrar_div = data;
     }

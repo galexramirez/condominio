@@ -48,7 +48,9 @@
 
         case '/condominio': MController('condominio','renderice'); break;     
 
-        case '/cta_pagar': MController('cta_pagar','renderice'); break;     
+        case '/cta_pagar': MController('cta_pagar','renderice'); break;
+        
+        case '/manual': MController('manual','renderice'); break;
 
         default: header('Location: /inicio');
     }

@@ -1,0 +1,183 @@
+/* 1.0 Data Tables */
+
+input{
+    width: 100% !important;
+}
+  
+.filters_manual th{
+    padding:0px !important;
+    font-size: 11px
+}
+
+th{
+    font-size: 9px;
+    font-weight: 500;
+}
+  
+.dataTables_scrollHeadInner{
+  width: 100%-6px !important;
+}
+  
+.dataTables_filter{
+   padding-right: 100px;
+}
+  
+table.dataTable thead {
+    background: #2A4C38;
+    color:white;
+}
+
+table.dataTable tfoot {
+    background: #2A4C38;
+    color:white;
+}
+
+div.dataTables_wrapper div.dataTables_length {
+    float: left !important;
+}
+
+div.dataTables_wrapper div.dataTables_filter {
+    float: right !important;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    float: left !important;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    float: right !important;
+}
+
+div.dt-buttons {
+    float: left !important;
+}
+
+/* Paginado */
+.page-item.active .page-link {
+    background-color: #2A4C38;
+    border-color: #2A4C38;
+}
+
+.page-link {
+    color: #bec3bf;
+}
+
+table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
+    padding: 5px 5px 5px 5px !important;
+}
+
+/* Botones de mostrar y ocultar informacion adicional */
+
+table.dataTable td.dt-control:before {
+    height: 1em;
+    width: 1em;
+    display: inline-block;
+    color: white;
+    border: 0.15em solid white;
+    border-radius: 1em;
+    box-shadow: 0 0 0.2em #444;
+    box-sizing: content-box;
+    text-align: center;
+    text-indent: 0 !important;
+    font-family: "Courier New",Courier,monospace;
+    line-height: 1em; 
+    content: "+";
+    background-color: #31b131;
+}
+
+table.dataTable tr.dt-hasChild td.dt-control:before {
+    content: "-";
+    background-color: #d33333;
+}
+
+/* Cierre 1.0 DataTables */
+
+
+/* 2.0 Tablas */
+
+#tabla_manual thead {
+    background: #2A4C38;
+    color:white;
+}
+
+/* tamaño de texto de tablas*/
+
+#tabla_manual {
+    font-size: 12px;
+}
+
+.table-fixed tbody {
+    height: 120px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+/* Cierre 2.0 Tablas */
+
+/* 3.0 Tabs */
+
+.nav-tabs .nav-link.active {
+    background-color:#F2F3F5 !important;
+    border-color: #dee2e6 #dee2e6 #F2F3F5;
+}
+
+.nav-tabs .nav-link {
+    border-color: #dee2e6 #dee2e6 #dee2e6;
+    background: #f8f9fa;
+    color: #bec3bf;
+
+}
+
+/* Cierre 3.0 Tabs */
+
+.color-error {
+    background-color: #ffff006b !important;
+}
+
+.color-observado {
+    color : red;
+}
+
+/* PARA OCULTAR EL INCREMENTO DEL CAMPO NUMBER
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Cambios para optimizar tinymce */
+
+.tox-promotion-link {
+    display: none !important;
+}
+
+.tox-tinymce {
+    height: 800px !important;
+    width : 100% !important;
+}
+
+.nav-link-alert {
+    color: #d1d3e2;
+}
+
+.nav-item .nav-link-alert {
+    position: relative;
+}
+
+.nav-item .nav-link-alert {
+/*    height: 4.375rem;*/
+    display: flex;
+    align-items: center;
+/*    padding: 0 0.75rem;*/
+}
+
+.drop-titulo{
+    font-size: 12px;
+    font-weight: 500;
+}
