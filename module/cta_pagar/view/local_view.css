@@ -49,6 +49,11 @@ div.dt-buttons {
     color:white;
 }
 
+#tabla_producto thead {
+    background: #2A4C38;
+    color:white;
+}
+
 #tabla_tc_cta_pagar_usuario thead {
     background: #2A4C38;
     color:white;
@@ -64,6 +69,10 @@ div.dt-buttons {
 }
 
 #tabla_proveedor{
+    font-size: 12px;
+}
+
+#tabla_producto{
     font-size: 12px;
 }
 

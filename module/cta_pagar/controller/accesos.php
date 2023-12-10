@@ -12,6 +12,7 @@ class accesos
 				$tab_html = '	<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Listado</a>
 								<a class="nav-item nav-link" id="nav-registro-tab" data-toggle="tab" href="#nav-registro" role="tab" aria-controls="nav-registro" aria-selected="false">Registro</a>
 								<a class="nav-item nav-link" id="nav-proveedor-tab" data-toggle="tab" href="#nav-proveedor" role="tab" aria-controls="nav-proveedor" aria-selected="false">Proveedor</a>
+								<a class="nav-item nav-link" id="nav-producto-tab" data-toggle="tab" href="#nav-producto" role="tab" aria-controls="nav-producto" aria-selected="false">Producto</a>
 								<a class="nav-item nav-link" id="nav-reporte-tab" data-toggle="tab" href="#nav-reporte" role="tab" aria-controls="nav-reporte" aria-selected="false">Reporte</a>';
 				MModel($this->modulo, 'crud');
 				$instancia_ajax = new crud();
@@ -84,6 +85,24 @@ class accesos
 											<th>ESTADO</th>
 											<th>DIRECCION_PRINCIPAL</th>
 											<th>DISTRITO</th>
+											<th>ACCION</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>';
+            break;
+
+			case "tabla_producto":
+                $tabla_html = '	<table id="tabla_producto" class="table table-striped table-bordered table-condensed w-100">
+									<thead class="text-center">
+										<tr>
+											<th>ID</th>
+											<th>RUBRO_DE_PRODUCTO</th>
+											<th>TIPO</th>
+											<th>CODIGO</th> 
+											<th>DESCRIPCION_DE_PRODUCTO</th>
+											<th>ESTADO</th>
 											<th>ACCION</th>
 										</tr>
 									</thead>
@@ -169,6 +188,18 @@ class accesos
 									{"data": "prov_estado"},
 									{"data": "prov_direccion"},
 									{"data": "prov_distrito"},
+									{"defaultContent": " '.$defaultContent1.' "}
+								]';
+			break;
+
+			case "tabla_producto":
+				$defaultContent1 = "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btn_editar_producto'><i class='bi bi-pencil'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pencil' viewBox='0 0 16 16'><path d='M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z'/></svg></i></button></div></div>";
+				$columnas_html = '[	{"data": "producto_id"},
+									{"data": "prod_rubro"},
+									{"data": "prod_tipo"},
+									{"data": "prod_codigo"},
+									{"data": "prod_descripcion"},
+									{"data": "prod_estado"},
 									{"defaultContent": " '.$defaultContent1.' "}
 								]';
 			break;

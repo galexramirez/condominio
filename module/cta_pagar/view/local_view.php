@@ -1226,6 +1226,105 @@
 
 			</div>
 
+			<!-- TAB PROVEEDOR -->
+			<div class="tab-pane fade" id="nav-producto" role="tabpanel" aria-labelledby="nav-producto-tab">
+				<section class="container-fluid py-3">
+					<button id="btn_nuevo_producto" type="button" class="btn btn-secondary btn-sm btn_nuevo_producto" data-toggle="modal">+ Nuevo</button>  
+				</section>
+
+				<div class="row p-3">
+					<div class="col-auto m-0">
+						<div class="table-responsive" id="div_tabla_producto">
+						</div>
+					</div>
+				</div>
+
+				<!-- MODAL PARA CRUD -->
+				<div class="row modal fade" id="modal_crud_producto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+	   
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel"></h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+	  
+			  				<form id="form_producto">
+				  				<div class="modal-body">
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group">
+										  		<label for="producto_id" class="col-form-label form-control-sm">ID</label>
+										   		<input type="number" readonly class="form-control form-control-sm" id="producto_id">
+										 	</div>
+									 	</div>
+										 <div class="col-lg-6">
+									  		<div class="form-group">
+												<label for="prod_codigo" class="col-form-label form-control-sm">CODIGO</label>
+										   		<input type="text" readonly class="form-control form-control-sm" id="prod_codigo">
+											</div> 
+									 	</div>    
+									</div>
+									<div class="row">
+										 <div class="col-lg-12">
+									  		<div class="form-group">
+												<label for="prod_rubro" class="col-form-label form-control-sm">RUBRO</label>
+												<select class="form-control form-control-sm" id="prod_rubro">
+												</select>
+											</div> 
+						  				</div>
+									</div>
+									<div class="row"> 
+										<div class="col-lg-12">
+									  		<div class="form-group">
+												<label for="prod_descripcion" class="col-form-label form-control-sm">DESCRIPCION</label>
+												<input type="text" class="form-control text-uppercase form-control-sm" id="prod_descripcion" maxlength="250">
+											</div> 
+						  				</div>
+									</div>
+									<div class="row"> 
+										<div class="col-lg-6">
+									  		<div class="form-group">
+											  	<label for="prod_tipo" class="col-form-label form-control-sm">TIPO</label>
+												<select class="form-control form-control-sm" id="prod_tipo">
+												</select>
+											</div> 
+						  				</div>
+										<div class="col-lg-6">
+									  		<div class="form-group">
+												<label for="prod_estado" class="col-form-label form-control-sm">ESTADO</label>
+												<select class="form-control form-control-sm" id="prod_estado">
+												</select>
+											</div> 
+						  				</div>
+									</div>
+									<div class="row"> 
+										<div class="col-lg-12">
+									  		<div class="form-group">
+												<label for="prod_log" class="col-form-label form-control-sm">LOG</label>
+											</div> 
+						  				</div>
+										<div class="col-lg-12">
+											<div class="form-group">
+												<div class="form-control-sm overflow-auto border border-muted border-radius rounded" style="height:50px" id="div_producto_log">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+				  				<div class="modal-footer">
+					  				<button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
+					  				<button type="submit" id="btn_guardar_producto" class="btn btn-dark btn-sm btn_guardar_producto">Guardar</button>
+				  				</div>
+			  				</form>    
+						</div>
+					</div>
+				</div>  			
+
+			</div>
+
 			<!-- TAB REPORTE -->
 			<div class="tab-pane fade" id="nav-reporte" role="tabpanel" aria-labelledby="nav-reporte-tab">
 

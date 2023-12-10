@@ -229,6 +229,74 @@ class crud
         $this->conexion=null;	
 	}  		
 
+	function leer_producto()
+	{
+        $consulta = " 	SELECT `producto`.`producto_id`,
+							`producto`.`prod_rubro`,
+							`producto`.`prod_tipo`,
+							`producto`.`prod_codigo`,
+							`producto`.`prod_descripcion`,
+							`producto`.`prod_estado`
+						FROM `producto` ";
+
+        $resultado = $this->conexion->prepare($consulta);
+        $resultado->execute();        
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+
+        print json_encode($data, JSON_UNESCAPED_UNICODE);
+        $this->conexion=null;
+   	}   
+
+	function nuevo_codigo()
+	{
+		$consulta = "SELECT COUNT(DISTINCT `prod_rubro`) AS `cantidad` FROM `producto`";
+		$resultado = $this->conexion->prepare($consulta);
+		$resultado->execute();
+		$data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+		return $data;
+		$this->conexion=null;
+
+	}
+	function crear_producto($producto_id, $prod_rubro, $prod_tipo, $prod_codigo, $prod_descripcion, $prod_estado, $prod_log)
+	{
+        $prod_usuario = $_SESSION['USUA_NOMBRE_CORTO'];
+        $prod_fecha_creacion = date("Y-m-d H:i:s");
+        $prod_log = "<strong>".$prod_estado."</strong> ".$prod_fecha_creacion." ".$prod_usuario." CREACIÓN <br>";	
+
+		$consulta = "INSERT INTO `producto`(`prod_rubro`, `prod_tipo`, `prod_codigo`, `prod_descripcion`, `prod_estado`, `prod_log`) VALUES ('$prod_rubro', '$prod_tipo', '$prod_codigo', '$prod_descripcion', '$prod_estado', '$prod_log')";
+
+		$resultado = $this->conexion->prepare($consulta);
+		$resultado->execute();   
+
+		$consulta = "SELECT * FROM `producto`";
+        $resultado = $this->conexion->prepare($consulta);
+        $resultado->execute();        
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        print json_encode($data, JSON_UNESCAPED_UNICODE);
+        $this->conexion=null;	
+	}  	
+	
+	function editar_producto($producto_id, $prod_rubro, $prod_tipo, $prod_codigo, $prod_descripcion, $prod_estado, $prod_log)
+	{
+        $prod_log_edit = '';
+		$prod_usuario = $_SESSION['USUA_NOMBRE_CORTO'];
+        $prod_fecha_edicion = date("Y-m-d H:i:s");
+        $prod_log_edit = "<strong>".$prod_estado."</strong> ".$prod_fecha_edicion." ".$prod_usuario." EDICIÓN <br>".$prod_log;
+
+		$consulta = "UPDATE `producto` SET `prod_rubro`='$prod_rubro', `prod_tipo`='$prod_tipo', `prod_codigo`='$prod_codigo',  `prod_descripcion`='$prod_descripcion',`prod_estado`='$prod_estado', `prod_log`='$prod_log_edit' WHERE `producto_id`='$producto_id'";
+
+		$resultado = $this->conexion->prepare($consulta);
+		$resultado->execute();   
+
+		$consulta= "SELECT * FROM `producto` WHERE `producto_id` ='$producto_id'";
+        $resultado = $this->conexion->prepare($consulta);
+        $resultado->execute();        
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        print json_encode($data, JSON_UNESCAPED_UNICODE);//envio el array final el formato json a AJAX
+        $this->conexion=null;	
+	}  		
+
 	function leer_tc_cta_pagar_usuario()
 	{
 		$tc_variable = 'USUARIO';

@@ -40,6 +40,7 @@
                     <script src='module/cta_pagar/view/local_view_listado.js' type='text/javascript'></script>
                     <script src='module/cta_pagar/view/local_view_registro.js' type='text/javascript'></script>
                     <script src='module/cta_pagar/view/local_view_proveedor.js' type='text/javascript'></script>
+                    <script src='module/cta_pagar/view/local_view_producto.js' type='text/javascript'></script>
                     <script src='module/cta_pagar/view/local_view_reporte.js' type='text/javascript'></script>
                     <script src='module/cta_pagar/view/local_view_tc_cta_pagar_usuario.js' type='text/javascript'></script>
                     <script src='module/cta_pagar/view/local_view_tc_cta_pagar_sistema.js' type='text/javascript'></script>";

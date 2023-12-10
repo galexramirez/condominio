@@ -186,4 +186,55 @@ class logico
         $respuesta = $instancia_ajax->editar_proveedor($prov_ruc, $prov_nombre, $prov_contacto, $prov_cta_banco_soles, $prov_email, $prov_nro_telefono, $prov_estado, $prov_direccion, $prov_distrito, $prov_log);
 	}  		
 
+    public function crear_producto($producto_id, $prod_rubro, $prod_tipo, $prod_codigo, $prod_descripcion, $prod_estado, $prod_log)
+	{
+        MModel($this->modulo,'crud');
+        $instancia_ajax = new crud();
+        $respuesta = $instancia_ajax->crear_producto($producto_id, $prod_rubro, $prod_tipo, $prod_codigo, $prod_descripcion, $prod_estado, $prod_log);
+	}  	
+	
+	public function editar_producto($producto_id, $prod_rubro, $prod_tipo, $prod_codigo, $prod_descripcion, $prod_estado, $prod_log)
+	{
+        MModel($this->modulo,'crud');
+        $instancia_ajax = new crud();
+        $respuesta = $instancia_ajax->editar_producto($producto_id, $prod_rubro, $prod_tipo, $prod_codigo, $prod_descripcion, $prod_estado, $prod_log);
+	}
+
+    public function crear_codigo($prod_rubro)
+    {
+        $prod_codigo = "";
+        $rpta_buscar_dato = "";
+        $rpta_contar_dato = "";
+        $nuevo_codigo = "";
+        MModel($this->modulo,'crud');
+        $instancia_ajax = new crud();
+        $respuesta = $instancia_ajax->buscar_dato('producto', 'prod_codigo', "`prod_rubro`='".$prod_rubro."'");
+
+        foreach ($respuesta as $row) {
+			$rpta_buscar_dato = substr($row['prod_codigo'],0,2);
+		}
+        if($rpta_buscar_dato!==""){
+            MModel($this->modulo,'crud');
+            $instancia_ajax = new crud();
+            $respuesta = $instancia_ajax->contar_dato('producto', 'prod_rubro', "`prod_rubro`='".$prod_rubro."'");
+            foreach ($respuesta as $row) {
+                $rpta_contar_dato = $row['cantidad'];
+            }
+            $rpta_contar_dato++;
+            $prod_codigo = $rpta_buscar_dato.substr("000000".$rpta_contar_dato,-6);
+        }else{
+            MModel($this->modulo,'crud');
+            $instancia_ajax = new crud();
+            $respuesta = $instancia_ajax->nuevo_codigo();
+            foreach ($respuesta as $row) {
+                $nuevo_codigo = $row['cantidad'];
+            }
+            $nuevo_codigo++;
+            $prod_codigo = substr("00".$nuevo_codigo,-2)."000001";
+        }
+        
+
+        echo $prod_codigo;
+    }
+
 }

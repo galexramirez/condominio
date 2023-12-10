@@ -223,6 +223,48 @@ switch ($Accion)
       $respuesta = $instancia_ajax->editar_proveedor($prov_ruc, $prov_nombre, $prov_contacto, $prov_cta_banco_soles, $prov_email, $prov_nro_telefono, $prov_estado, $prov_direccion, $prov_distrito, $prov_log);
    break;
 
+   case 'leer_producto':
+      MModel($modulo,'crud');
+      $instancia_ajax= new crud();
+      $respuesta = $instancia_ajax->leer_producto();
+   break;
+
+   case 'crear_codigo':
+      $prod_rubro = $_POST['prod_rubro'];
+
+      MController($modulo,'logico');
+      $instancia_ajax = new logico();
+      $respuesta = $instancia_ajax->crear_codigo($prod_rubro);
+   break;
+
+   case 'crear_producto':
+      $producto_id      = $_POST['producto_id'];
+      $prod_rubro       = strtoupper($_POST['prod_rubro']);
+      $prod_tipo        = strtoupper($_POST['prod_tipo']);
+      $prod_codigo      = $_POST['prod_codigo'];
+      $prod_descripcion = $_POST['prod_descripcion'];
+      $prod_estado      = $_POST['prod_estado'];
+      $prod_log         = $_POST['prod_log'];
+
+      MController($modulo,'logico');
+      $instancia_ajax = new logico();
+      $respuesta = $instancia_ajax->crear_producto($producto_id, $prod_rubro, $prod_tipo, $prod_codigo, $prod_descripcion, $prod_estado, $prod_log);
+   break;
+
+   case 'editar_producto':
+      $producto_id      = $_POST['producto_id'];
+      $prod_rubro       = strtoupper($_POST['prod_rubro']);
+      $prod_tipo        = strtoupper($_POST['prod_tipo']);
+      $prod_codigo      = $_POST['prod_codigo'];
+      $prod_descripcion = $_POST['prod_descripcion'];
+      $prod_estado      = $_POST['prod_estado'];
+      $prod_log         = $_POST['prod_log'];
+      
+      MController($modulo,'logico');
+      $instancia_ajax = new logico();
+      $respuesta = $instancia_ajax->editar_producto($producto_id, $prod_rubro, $prod_tipo, $prod_codigo, $prod_descripcion, $prod_estado, $prod_log);
+   break;
+
    case 'leer_tc_cta_pagar_usuario':
       MModel($modulo,'crud');
       $instancia_ajax = new crud();
